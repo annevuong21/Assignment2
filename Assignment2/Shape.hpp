@@ -41,3 +41,4 @@ protected:
 };
 
 #endif // for MTRN3500_SHAPE_H
+
