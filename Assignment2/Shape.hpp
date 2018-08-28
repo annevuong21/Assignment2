@@ -40,5 +40,29 @@ protected:
 
 };
 
+
+// Rectangular prism class
+
+class Rectangular : public Shape
+{
+public:
+	Rectangular();
+	Rectangular(double x_, double y_, double z_, double x_len, double y_len, double z_len);
+
+	double Get_x_length();
+	double Get_y_length();
+	double Get_z_length();
+
+	void Set_x_length(double x_len);
+	void Set_y_length(double y_len);
+	void Set_z_length(double z_len);
+	void Set_length(double x_len, double y_len, double z_len);
+
+	void draw();
+
+protected:
+	double x_length, y_length, z_length;
+};
+
 #endif // for MTRN3500_SHAPE_H
 

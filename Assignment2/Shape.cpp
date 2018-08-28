@@ -111,3 +111,92 @@ void Shape::setColor(float red_, float green_, float blue_) {
 	blue = blue_;
 };
 
+// Rectangular prism class definition
+
+Rectangular::Rectangular()
+{
+	Set_length(10.0, 10.0, 10.0);
+}
+
+Rectangular::Rectangular(double x_, double y_, double z_, double x_len, double y_len, double z_len) : Shape(x_, y_, z_)
+{
+	Set_length(x_len, y_len, z_len);
+}
+
+double Rectangular::Get_x_length()
+{
+	return x_length;
+}
+
+double Rectangular::Get_y_length()
+{
+	return y_length;
+}
+
+double Rectangular::Get_z_length()
+{
+	return z_length;
+}
+
+void Rectangular::Set_x_length(double x_len)
+{
+	x_length = x_len;
+}
+
+void Rectangular::Set_y_length(double y_len)
+{
+	y_length = y_len;
+}
+
+void Rectangular::Set_z_length(double z_len)
+{
+	z_length = z_len;
+}
+
+void Rectangular::Set_length(double x_len, double y_len, double z_len)
+{
+	x_length = x_len;
+	y_length = y_len;
+	z_length = z_len;
+}
+
+void Rectangular::draw()
+{
+	glBegin(GL_QUADS);
+	glColor3d(red, green, blue);
+
+	// First plane paralell to YZ plane
+	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
+	glVertex3d(x + (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+	glVertex3d(x + (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	//Second plane paralell to YZ plane
+	glVertex3d(x - (x_length / 2), y + (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+	glVertex3d(x - (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+
+	//First plane paralell to XZ plane
+	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y + (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	glVertex3d(x + (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	//Second plane paralell to XZ plane
+	glVertex3d(x + (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+
+	// First plane paralell to XY plane
+	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y + (y_length / 2), z + (z_length / 2));
+	glVertex3d(x - (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	glVertex3d(x + (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	// Second plane paralell to XY plane
+	glVertex3d(x + (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	glVertex3d(x - (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+
+	glEnd();
+}

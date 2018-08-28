@@ -155,8 +155,8 @@ void drawGoals()
 
 void test()
 {
-	Rectangular rect(10.0, 10.0, 10.0, 10.0, 10.0, 10.0);
-	
+	Rectangular rect(0, 0, 0, 100.0, 100.0, 100.0);
+	rect.setColor(0.5, 0.4, 0);
 
 	rect.draw();
 }
