@@ -155,10 +155,14 @@ void drawGoals()
 
 void test()
 {
-	Rectangular rect(0, 0, 0, 100.0, 100.0, 100.0);
-	rect.setColor(0.5, 0.4, 0);
-
-	rect.draw();
+	Rectangular rect(100.0, 100.0, 100.0);
+	rect.setColor(1, 1, 1);
+	Triangular tri(100.0, 100.0, 100.0);
+	tri.setColor(0.5, 0.4, 0);
+	tri.Set_depth(50);
+	tri.Set_angle(1.57);
+	//rect.draw();
+	tri.draw();
 }
 
 void display() {

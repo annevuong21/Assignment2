@@ -1,5 +1,6 @@
 
 #include "Shape.hpp"
+#include <math.h>
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -118,7 +119,7 @@ Rectangular::Rectangular()
 	Set_length(10.0, 10.0, 10.0);
 }
 
-Rectangular::Rectangular(double x_, double y_, double z_, double x_len, double y_len, double z_len) : Shape(x_, y_, z_)
+Rectangular::Rectangular(double x_len, double y_len, double z_len)
 {
 	Set_length(x_len, y_len, z_len);
 }
@@ -198,5 +199,135 @@ void Rectangular::draw()
 	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
 	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
 
+	glEnd();
+}
+
+
+// Triangular prism class definition
+
+Triangular::Triangular()
+{
+	Set_side(10.0, 10.0, 10.0);
+	angle = 60;
+}
+
+Triangular::Triangular(double sideA_len, double sideB_len)
+{
+	sideA = sideA_len;
+	sideB = sideB_len;
+}
+
+Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len)
+{
+	Set_side(sideA_len, sideB_len, sideC_len);
+}
+
+double Triangular::Get_sideA()
+{
+	return sideA;
+}
+
+double Triangular::Get_sideB()
+{
+	return sideB;
+}
+
+double Triangular::Get_sideC()
+{
+	return sideC;
+}
+
+double Triangular::Get_depth()
+{
+	return depth;
+}
+
+double Triangular::Get_angle()
+{
+	return angle;
+}
+
+void Triangular::Set_sideA(double sideA_len)
+{
+	sideA = sideA_len;
+	UpdateSideC();
+}
+
+void Triangular::Set_sideB(double sideB_len)
+{
+	sideB = sideB_len;
+	UpdateSideC();
+}
+
+void Triangular::Set_sideC(double sideC_len)
+{
+	sideC = sideC_len;
+	UpdateAngle();
+}
+
+void Triangular::Set_side(double sideA_len, double sideB_len, double sideC_len)
+{
+	sideA = sideA_len;
+	sideB = sideB_len;
+	sideC = sideC_len;
+	UpdateAngle();
+}
+
+void Triangular::Set_depth(double len)
+{
+	depth = len;
+}
+
+void Triangular::Set_angle(double degree)
+{
+	angle = degree;
+	UpdateSideC();
+}
+
+void Triangular::UpdateAngle()
+{
+	double ratio = (pow(sideA, 2) + pow(sideB, 2) - pow(sideC, 2)) / (2 * sideA * sideB);
+	angle = acos(ratio);
+}
+
+void Triangular::UpdateSideC()
+{
+	sideC = sqrt(pow(sideA, 2) + pow(sideB, 2) - 2 * sideA * sideB * cos(angle));
+}
+
+void Triangular::draw()
+{
+	glColor3d(red, green, blue);
+	glBegin(GL_QUADS);
+
+	// The plane(base) parallel to XZ plane
+	glVertex3d(x + (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z - (depth / 2));
+
+	// The rectangular plane containing sideB
+	glVertex3d(x - (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z + (depth / 2));
+
+	// The rectangular plane containing sideC
+	glVertex3d(x + (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z + (depth / 2));
+
+	glEnd();
+
+	// Two trangle plane
+	glBegin(GL_TRIANGLES);
+	glVertex3d(x + (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z + (depth / 2));
+
+	glVertex3d(x - (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z - (depth / 2));
 	glEnd();
 }
