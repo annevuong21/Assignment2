@@ -2,6 +2,8 @@
 #include "Shape.hpp"
 #include <math.h>
 
+#define PI 3.14159265358979323846;
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
@@ -208,7 +210,6 @@ void Rectangular::draw()
 Triangular::Triangular()
 {
 	Set_side(10.0, 10.0, 10.0);
-	angle = 60;
 }
 
 Triangular::Triangular(double sideA_len, double sideB_len)
@@ -244,7 +245,7 @@ double Triangular::Get_depth()
 
 double Triangular::Get_angle()
 {
-	return angle;
+	return angle * 180 / PI;
 }
 
 void Triangular::Set_sideA(double sideA_len)
@@ -280,7 +281,7 @@ void Triangular::Set_depth(double len)
 
 void Triangular::Set_angle(double degree)
 {
-	angle = degree;
+	angle = degree / 180 * PI;
 	UpdateSideC();
 }
 
