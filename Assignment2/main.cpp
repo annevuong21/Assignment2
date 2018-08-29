@@ -160,7 +160,7 @@ void test()
 	Triangular tri(100.0, 100.0, 100.0);
 	tri.setColor(0.5, 0.4, 0);
 	tri.Set_depth(50);
-	tri.Set_angle(1.57);
+	tri.Set_angle(20);
 	//rect.draw();
 	tri.draw();
 }
