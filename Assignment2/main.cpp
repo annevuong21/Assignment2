@@ -158,9 +158,9 @@ void test()
 	Rectangular rect(100.0, 100.0, 100.0);
 	rect.setColor(1, 1, 1);
 	Triangular tri(100.0, 100.0, 100.0);
-	tri.setColor(0.5, 0.4, 0);
-	tri.Set_depth(50);
-	tri.Set_angle(20);
+	tri.setColor(1, 1, 1);
+	tri.Set_depth(100);
+	tri.Set_angle(90);
 	//rect.draw();
 	tri.draw();
 }

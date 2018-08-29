@@ -65,7 +65,7 @@ protected:
 };
 
 
-// Triangular prism class definition
+// Triangular prism class
 
 class Triangular : public Shape
 {
@@ -104,5 +104,17 @@ protected:
 
 };
 
+
+// Trapezoidal Prism class
+
+class Trapezoidal : public Shape
+{
+public:
+
+
+protected:
+	double depth;
+	
+};
 #endif // for MTRN3500_SHAPE_H
 
