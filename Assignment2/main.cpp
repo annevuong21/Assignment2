@@ -164,6 +164,7 @@ void test()
 	//rect.draw();
 	tri.draw();
 	//Testing things
+	//Yes I get your change!
 }
 
 void display() {
