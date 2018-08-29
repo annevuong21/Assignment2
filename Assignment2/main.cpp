@@ -163,6 +163,7 @@ void test()
 	tri.Set_angle(90);
 	//rect.draw();
 	tri.draw();
+	//Testing things
 }
 
 void display() {
