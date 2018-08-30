@@ -125,6 +125,10 @@ Rectangular::Rectangular(double x_len, double y_len, double z_len)
 {
 	Set_length(x_len, y_len, z_len);
 }
+Rectangular::Rectangular(double x_len, double y_len, double z_len, double rotation) {
+	Set_length(x_len, y_len, z_len);
+	this->rotation = rotation;
+}
 
 double Rectangular::Get_x_length()
 {
@@ -165,6 +169,10 @@ void Rectangular::Set_length(double x_len, double y_len, double z_len)
 
 void Rectangular::draw()
 {
+	// glRotate must be called first and OUTSIDE glBegin()-glEnd()
+	glRotated(rotation, 0, 1, 0);
+
+
 	glBegin(GL_QUADS);
 	glColor3d(red, green, blue);
 
@@ -202,6 +210,7 @@ void Rectangular::draw()
 	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
 
 	glEnd();
+
 }
 
 
@@ -221,6 +230,11 @@ Triangular::Triangular(double sideA_len, double sideB_len)
 Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len)
 {
 	Set_side(sideA_len, sideB_len, sideC_len);
+}
+
+Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len, double rotation) {
+	Set_side(sideA_len, sideB_len, sideC_len);
+	this->rotation = rotation;
 }
 
 double Triangular::Get_sideA()
@@ -298,6 +312,10 @@ void Triangular::UpdateSideC()
 
 void Triangular::draw()
 {
+	
+	glRotated(rotation, 0, 1, 0);
+	
+	
 	glColor3d(red, green, blue);
 	glBegin(GL_QUADS);
 

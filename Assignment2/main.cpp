@@ -152,18 +152,30 @@ void drawGoals()
 		glPopMatrix();
 	}
 }
-
-void test()
+//=============================================================================================
+// 30/08/18
+// Idk where to put the update message right now, I'll work it out later
+// Added glRotate to the rectangular prism class so that we can rotate shapes in the x-z plane
+// Added constructor in rectangular prism class that takes in rotation as well as 
+// Added glRotate in Triangular.draw()
+// Added constructor for Triangular that takes in rotation angle;
+//=============================================================================================
+void test() 
 {
-	Rectangular rect(100.0, 100.0, 100.0);
-	rect.setColor(1, 1, 1);
-	Triangular tri(100.0, 100.0, 100.0);
+	//Rectangular rect(25,25,25,60);
+	//rect.setColor(1, 0, 1);
+	//rect.draw();
+	
+	
+	Triangular tri(10.0, 10.0, 10.0,60);
 	tri.setColor(0.5, 0.4, 0);
 	tri.Set_depth(50);
-	tri.Set_angle(20);
+	tri.Set_angle(60);
 	//rect.draw();
 	tri.draw();
-	//Testing things
+	//Testing things please work
+
+	
 }
 
 void display() {

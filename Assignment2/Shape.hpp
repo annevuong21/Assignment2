@@ -48,7 +48,7 @@ class Rectangular : public Shape
 public:
 	Rectangular();
 	Rectangular(double x_len, double y_len, double z_len);
-
+	Rectangular(double x_len, double y_len, double z_len, double rotation);
 	double Get_x_length();
 	double Get_y_length();
 	double Get_z_length();
@@ -73,7 +73,7 @@ public:
 	Triangular();
 	Triangular(double sideA_len, double sideB_len);
 	Triangular(double sideA_len, double sideB_len, double sideC_len);
-
+	Triangular(double sideA_len, double sideB_len, double SideC_len, double rotation);
 	double Get_sideA();
 	double Get_sideB();
 	double Get_sideC();
