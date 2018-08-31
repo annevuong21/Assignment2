@@ -160,17 +160,18 @@ void test()
 	rect.setPosition(100, 0, 0);
 	Triangular tri(100.0, 100.0, 100.0);
 	Triangular tri2(100.0, 100.0, 100.0);
+	Trapezoidal tra(100, 25, 100, 100);
 	tri.setColor(1, 0, 0);
 	tri2.setColor(0, 1, 0);
 	tri.Set_depth(100);
 	tri2.Set_depth(100);
 	tri.setPosition(100, 0, 0);
 	tri.setRotation(60);
-	tri.draw();
+	tra.draw();
+	//tri.draw();
 	rect.draw();
-	tri2.draw();
-	//Testing things
-	//Yes I get your change!
+	//tri2.draw();
+
 }
 
 void display() {
