@@ -159,6 +159,9 @@ void drawGoals()
 // Added constructor in rectangular prism class that takes in rotation as well as 
 // Added glRotate in Triangular.draw()
 // Added constructor for Triangular that takes in rotation angle;
+// 31/08/18
+// Rewrite Triangular.draw() to make the center of prism is the same as given point.
+// 
 //=============================================================================================
 void test() 
 {
