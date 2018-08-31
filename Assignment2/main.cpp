@@ -157,12 +157,18 @@ void test()
 {
 	Rectangular rect(100.0, 100.0, 100.0);
 	rect.setColor(1, 1, 1);
+	rect.setPosition(100, 0, 0);
 	Triangular tri(100.0, 100.0, 100.0);
-	tri.setColor(1, 1, 1);
+	Triangular tri2(100.0, 100.0, 100.0);
+	tri.setColor(1, 0, 0);
+	tri2.setColor(0, 1, 0);
 	tri.Set_depth(100);
-	tri.Set_angle(90);
-	//rect.draw();
+	tri2.Set_depth(100);
+	tri.setPosition(100, 0, 0);
+	tri.setRotation(60);
 	tri.draw();
+	rect.draw();
+	tri2.draw();
 	//Testing things
 	//Yes I get your change!
 }

@@ -170,11 +170,9 @@ void Rectangular::Set_length(double x_len, double y_len, double z_len)
 
 void Rectangular::draw()
 {
-	// glRotate must be called first and OUTSIDE glBegin()-glEnd()
-	glRotated(rotation, 0, 1, 0);
-
-	glBegin(GL_QUADS);
 	glColor3d(red, green, blue);
+	
+	glBegin(GL_QUADS);
 
 	// First plane paralell to YZ plane
 	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
@@ -312,9 +310,8 @@ void Triangular::UpdateSideC()
 
 void Triangular::draw()
 {
-	glRotated(rotation, 0, 1, 0);
-
 	glColor3d(red, green, blue);
+
 	glBegin(GL_QUADS);
 
 	// The plane(base) parallel to XZ plane
@@ -339,6 +336,7 @@ void Triangular::draw()
 
 	// Two trangle plane
 	glBegin(GL_TRIANGLES);
+
 	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
 	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
 	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
@@ -346,5 +344,6 @@ void Triangular::draw()
 	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
 	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
 	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
+	
 	glEnd();
 }
