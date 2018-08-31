@@ -350,3 +350,114 @@ void Triangular::draw()
 	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
 	glEnd();
 }
+
+
+// Trapezoidal Prism class definition
+
+Trapezoidal::Trapezoidal()
+{
+	longside = 10;
+	offset = 2.5;
+	height = 10;
+	depth = 10;
+}
+
+Trapezoidal::Trapezoidal(double longside, double offset, double height)
+{
+	SetTrapezium(longside, offset, height);
+}
+
+Trapezoidal::Trapezoidal(double longside, double offset, double height, double depth)
+{
+	SetTrapezium(longside, offset, height);
+	this->depth = depth;
+}
+
+double Trapezoidal::Get_long()
+{
+	return longside;
+}
+
+double Trapezoidal::Get_offset()
+{
+	return offset;
+}
+
+double Trapezoidal::Get_height()
+{
+	return height;
+}
+
+double Trapezoidal::Get_depth()
+{
+	return depth;
+}
+
+void Trapezoidal::Set_long(double longside)
+{
+	this->longside = longside;
+}
+
+void Trapezoidal::Set_offset(double offset)
+{
+	this->offset = offset;
+}
+
+void Trapezoidal::Set_height(double height)
+{
+	this->height = height;
+}
+
+void Trapezoidal::Set_depth(double depth)
+{
+	this->depth = depth;
+}
+
+void Trapezoidal::SetTrapezium(double longside, double offset, double height)
+{
+	this->longside = longside;
+	this->offset = offset;
+	this->height = height;
+}
+
+void Trapezoidal::draw()
+{
+	glColor3d(red, green, blue);
+
+	glBegin(GL_QUADS);
+
+	// Base
+	glVertex3d(x + longside / 2, -height / 2, z + depth / 2);
+	glVertex3d(x + longside / 2, -height / 2, z - depth / 2);
+	glVertex3d(x - longside / 2, -height / 2, z - depth / 2);
+	glVertex3d(x - longside / 2, -height / 2, z + depth / 2);
+	// Top
+	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+
+	// First inclined plane
+	glVertex3d(x + (longside / 2), -height / 2, z + depth / 2);
+	glVertex3d(x + (longside / 2), -height / 2, z - depth / 2);
+	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	// Second inclined plane
+	glVertex3d(x - (longside / 2), -height / 2, z + depth / 2);
+	glVertex3d(x - (longside / 2), -height / 2, z - depth / 2);
+	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+
+	// First trapezium
+	glVertex3d(x + (longside / 2), -height / 2, z + depth / 2);
+	glVertex3d(x - (longside / 2), -height / 2, z + depth / 2);
+	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	// Second trapezium
+	glVertex3d(x + (longside / 2), -height / 2, z - depth / 2);
+	glVertex3d(x - (longside / 2), -height / 2, z - depth / 2);
+	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+
+	glEnd();
+}

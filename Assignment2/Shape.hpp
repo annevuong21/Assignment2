@@ -104,5 +104,35 @@ protected:
 
 };
 
+
+// Trapezoidal Prism class
+
+class Trapezoidal : public Shape
+{
+public:
+	Trapezoidal();
+	Trapezoidal(double longside, double offset, double height);
+	Trapezoidal(double longside, double offset, double height, double depth);
+
+	double Get_long();
+	double Get_offset();
+	double Get_height();
+	double Get_depth();
+
+	void Set_long(double longside);
+	void Set_offset(double offset);
+	void Set_height(double height);
+	void Set_depth(double depth);
+	void SetTrapezium(double longside, double offset, double height);
+
+	void draw();
+
+protected:
+	double longside;
+	double offset;
+	double height;
+	double depth;
+
+};
 #endif // for MTRN3500_SHAPE_H
 

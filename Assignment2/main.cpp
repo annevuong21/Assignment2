@@ -161,7 +161,7 @@ void drawGoals()
 // Added constructor for Triangular that takes in rotation angle;
 // 31/08/18
 // Rewrite Triangular.draw() to make the center of prism is the same as given point.
-// 
+// Add Trapezium class
 //=============================================================================================
 void test() 
 {
