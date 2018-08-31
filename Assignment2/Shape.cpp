@@ -171,7 +171,8 @@ void Rectangular::Set_length(double x_len, double y_len, double z_len)
 void Rectangular::draw()
 {
 	glColor3d(red, green, blue);
-	
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
 	glBegin(GL_QUADS);
 
 	// First plane paralell to YZ plane
@@ -208,6 +209,7 @@ void Rectangular::draw()
 	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
 
 	glEnd();
+	glPopMatrix();
 }
 
 
@@ -230,11 +232,18 @@ Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len)
 	Set_side(sideA_len, sideB_len, sideC_len);
 }
 
-Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len, double rotation) {
+Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len, double depth) 
+{
 	Set_side(sideA_len, sideB_len, sideC_len);
-	this->rotation = rotation;
+	this->depth = depth;
 }
 
+Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len, double depth, double rotation)
+{
+	Set_side(sideA_len, sideB_len, sideC_len);
+	this->depth = depth;
+	this->rotation = rotation;
+}
 double Triangular::Get_sideA()
 {
 	return sideA;
@@ -311,7 +320,8 @@ void Triangular::UpdateSideC()
 void Triangular::draw()
 {
 	glColor3d(red, green, blue);
-
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
 	glBegin(GL_QUADS);
 
 	// The plane(base) parallel to XZ plane
@@ -346,6 +356,7 @@ void Triangular::draw()
 	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
 	
 	glEnd();
+	glPopMatrix();
 }
 
 
@@ -368,6 +379,13 @@ Trapezoidal::Trapezoidal(double longside, double offset, double height, double d
 {
 	SetTrapezium(longside, offset, height);
 	this->depth = depth;
+}
+
+Trapezoidal::Trapezoidal(double longside, double offset, double height, double depth, double rotation)
+{
+	SetTrapezium(longside, offset, height);
+	this->depth = depth;
+	this->rotation = rotation;
 }
 
 double Trapezoidal::Get_long()
@@ -420,7 +438,8 @@ void Trapezoidal::SetTrapezium(double longside, double offset, double height)
 void Trapezoidal::draw()
 {
 	glColor3d(red, green, blue);
-
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
 	glBegin(GL_QUADS);
 
 	// Base
@@ -457,4 +476,5 @@ void Trapezoidal::draw()
 	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
 
 	glEnd();
+	glPopMatrix();
 }

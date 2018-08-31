@@ -74,7 +74,8 @@ public:
 	Triangular();
 	Triangular(double sideA_len, double sideB_len);
 	Triangular(double sideA_len, double sideB_len, double sideC_len);
-	Triangular(double sideA_len, double sideB_len, double SideC_len, double rotation);
+	Triangular(double sideA_len, double sideB_len, double sideC_len, double depth);
+	Triangular(double sideA_len, double sideB_len, double sideC_len, double depth, double rotation);
 
 	double Get_sideA();
 	double Get_sideB();
@@ -115,6 +116,7 @@ public:
 	Trapezoidal();
 	Trapezoidal(double longside, double offset, double height);
 	Trapezoidal(double longside, double offset, double height, double depth);
+	Trapezoidal(double longside, double offset, double height, double depth, double rotation);
 
 	double Get_long();
 	double Get_offset();

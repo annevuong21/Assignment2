@@ -157,7 +157,7 @@ void test()
 {
 	Rectangular rect(100.0, 100.0, 100.0);
 	rect.setColor(1, 1, 1);
-	rect.setPosition(100, 0, 0);
+	rect.setPosition(50, 0, 50);
 	Triangular tri(100.0, 100.0, 100.0);
 	Triangular tri2(100.0, 100.0, 100.0);
 	Trapezoidal tra(100, 25, 100, 100);
@@ -165,12 +165,12 @@ void test()
 	tri2.setColor(0, 1, 0);
 	tri.Set_depth(100);
 	tri2.Set_depth(100);
-	tri.setPosition(100, 0, 0);
+	//tri.setPosition(100, 0, 0);
 	tri.setRotation(60);
-	tra.draw();
-	//tri.draw();
+	//tra.draw();
+	tri.draw();
 	rect.draw();
-	//tri2.draw();
+	tri2.draw();
 
 }
 
