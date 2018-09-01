@@ -320,39 +320,37 @@ void Triangular::draw()
 	glBegin(GL_QUADS);
 
 	// The plane(base) parallel to XZ plane
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z - (depth / 2));
 
 	// The rectangular plane containing sideB
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z + (depth / 2));
 
 	// The rectangular plane containing sideC
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z + (depth / 2));
 
 	glEnd();
 
 	// Two trangle plane
 	glBegin(GL_TRIANGLES);
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z + (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z + (depth / 2));
 
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
+	glVertex3d(x - (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x + (sideA / 2), 0, z - (depth / 2));
+	glVertex3d(x - (sideA / 2) + sideB * cos(angle), sideB * sin(angle), z - (depth / 2));
 	glEnd();
 }
 
-
-// Trapezoidal Prism class definition
 
 Trapezoidal::Trapezoidal()
 {
@@ -460,4 +458,58 @@ void Trapezoidal::draw()
 	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
 
 	glEnd();
+}
+
+Cylinder::Cylinder() {
+	this->radius = 10;
+	this->length = 10;
+}
+Cylinder::Cylinder(double radius, double length) {
+	this->radius = radius;
+	this->length = length;
+}
+double Cylinder::getradius() {
+	return radius;
+}
+double Cylinder::getlength() {
+	return length;
+}
+void Cylinder::setradius(double size) {
+	this->radius = size;
+}
+void Cylinder::setlength(double size) {
+	this->length = size;
+}
+// Currently sets a cylinder with base at z = 0;
+void Cylinder::draw() {
+	// For the curved surface of the cylinder the idea is to draw 2 half cylinders either side of the origin.
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
+//	glTranslated(100, 100, 100);// -> This line moves the cylinder to a spot in the XZ plane. The corresponding translate functions
+	//								in the disk bits translate them to where they should be relative to the cylinder. In short, if we
+	//								are required to move our shapes, ONE POSSIBLE WAY is to implement translate functions in these places
+	glColor3d(red, green, blue);
+	gluCylinder(gluNewQuadric(), radius, radius, length/2, 100, 100);
+	glRotated(180, 0, 1, 0);
+	gluCylinder(gluNewQuadric(), radius, radius, length/2, 100, 100);
+	glPopMatrix();
+	
+// ===============================
+// glPushMatrix and glPopMatrix work like brackets for gl transformations such as rotate and translate
+// ===============================	
+	// Draw a disc-
+	glPushMatrix();
+	glColor3d(red, 0, 0);
+	glRotated(rotation, 0, 1, 0);
+	glTranslated(0, 0, z + length / 2);
+//	glTranslated(100, 100, 100);// -> Corresponding translate function
+	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
+	glTranslated(0, 0, z - length/2);
+//	glTranslated(100, 100, 100);// -> Corresponding translate function
+	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
+	glPopMatrix();
 }

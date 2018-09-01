@@ -159,24 +159,31 @@ void drawGoals()
 // Added constructor in rectangular prism class that takes in rotation as well as 
 // Added glRotate in Triangular.draw()
 // Added constructor for Triangular that takes in rotation angle;
+//=============================================================================================
+
+//=============================================================================================
 // 31/08/18
-// Rewrite Triangular.draw() to make the center of prism is the same as given point.
-// Add Trapezium class
+// Added cylinder class in Shape.hpp
+// Added the draw function for cylinder. Curved surface + end caps to cylinder. I've tested whether the shape can translate and rotate 
+// but the function calls need to be in very particular lines in the code
+// Added data members and data methods (get and set functions). 
+
 //=============================================================================================
 void test() 
 {
 	//Rectangular rect(25,25,25,60);
 	//rect.setColor(1, 0, 1);
 	//rect.draw();
-	
-	
-	Triangular tri(10.0, 10.0, 10.0,60);
+	Cylinder test(25, 50);
+	test.setColor(1, 1, 0);
+	test.setRotation(90);
+	test.draw();
+	/*Triangular tri(10.0, 10.0, 10.0);
 	tri.setColor(0.5, 0.4, 0);
 	tri.Set_depth(50);
-	tri.Set_angle(60);
-	//rect.draw();
-	tri.draw();
-	//Testing things please work
+	*/
+	
+	
 
 	
 }

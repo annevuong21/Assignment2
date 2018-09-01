@@ -104,9 +104,6 @@ protected:
 
 };
 
-
-// Trapezoidal Prism class
-
 class Trapezoidal : public Shape
 {
 public:
@@ -133,6 +130,21 @@ protected:
 	double height;
 	double depth;
 
+};
+
+class Cylinder : public Shape {
+protected:
+	double radius;
+	double length;
+public:
+	Cylinder();
+	Cylinder(double radius, double length);
+	double getradius();
+	double getlength();
+	void setradius(double size);
+	void setlength(double size);
+
+	void draw();
 };
 #endif // for MTRN3500_SHAPE_H
 
