@@ -50,14 +50,14 @@ public:
 	Rectangular(double x_len, double y_len, double z_len);
 	Rectangular(double x_len, double y_len, double z_len, double rotation);
 
-	double Get_x_length();
-	double Get_y_length();
-	double Get_z_length();
+	double Getx_length();
+	double Gety_length();
+	double Getz_length();
 
-	void Set_x_length(double x_len);
-	void Set_y_length(double y_len);
-	void Set_z_length(double z_len);
-	void Set_length(double x_len, double y_len, double z_len);
+	void Setx_length(double x_len);
+	void Sety_length(double y_len);
+	void Setz_length(double z_len);
+	void Setlength(double x_len, double y_len, double z_len);
 
 	void draw();
 
@@ -77,18 +77,18 @@ public:
 	Triangular(double sideA_len, double sideB_len, double sideC_len, double depth);
 	Triangular(double sideA_len, double sideB_len, double sideC_len, double depth, double rotation);
 
-	double Get_sideA();
-	double Get_sideB();
-	double Get_sideC();
-	double Get_depth();
-	double Get_angle();
+	double GetsideA();
+	double GetsideB();
+	double GetsideC();
+	double Getdepth();
+	double Getangle();
 
-	void Set_sideA(double sideA_len);
-	void Set_sideB(double sideB_len);
-	void Set_sideC(double sideC_len);
-	void Set_side(double sideA_len, double sideB_len, double sideC_len);
-	void Set_depth(double len);
-	void Set_angle(double degree);
+	void SetsideA(double sideA_len);
+	void SetsideB(double sideB_len);
+	void SetsideC(double sideC_len);
+	void Setside(double sideA_len, double sideB_len, double sideC_len);
+	void Setdepth(double len);
+	void Setangle(double degree);
 
 	// When SideC changes, Use it
 	void UpdateAngle(); 
@@ -118,15 +118,15 @@ public:
 	Trapezoidal(double longside, double offset, double height, double depth);
 	Trapezoidal(double longside, double offset, double height, double depth, double rotation);
 
-	double Get_long();
-	double Get_offset();
-	double Get_height();
-	double Get_depth();
+	double Getlong();
+	double Getoffset();
+	double Getheight();
+	double Getdepth();
 
-	void Set_long(double longside);
-	void Set_offset(double offset);
-	void Set_height(double height);
-	void Set_depth(double depth);
+	void Setlong(double longside);
+	void Setoffset(double offset);
+	void Setheight(double height);
+	void Setdepth(double depth);
 	void SetTrapezium(double longside, double offset, double height);
 
 	void draw();
@@ -137,6 +137,28 @@ protected:
 	double height;
 	double depth;
 
+};
+
+
+// Culinder prism class
+
+class Cylinder : public Shape {
+public:
+	Cylinder();
+	Cylinder(double radius, double length);
+	Cylinder(double radius, double length, double rotation);
+
+	double Getradius();
+	double Getlength();
+
+	void Setradius(double size);
+	void Setlength(double size);
+
+	void draw();
+
+protected:
+	double radius;
+	double length;
 };
 #endif // for MTRN3500_SHAPE_H
 

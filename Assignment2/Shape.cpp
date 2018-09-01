@@ -118,50 +118,50 @@ void Shape::setColor(float red_, float green_, float blue_) {
 
 Rectangular::Rectangular()
 {
-	Set_length(10.0, 10.0, 10.0);
+	Setlength(10.0, 10.0, 10.0);
 }
 
 Rectangular::Rectangular(double x_len, double y_len, double z_len)
 {
-	Set_length(x_len, y_len, z_len);
+	Setlength(x_len, y_len, z_len);
 }
 
 Rectangular::Rectangular(double x_len, double y_len, double z_len, double rotation) {
-	Set_length(x_len, y_len, z_len);
+	Setlength(x_len, y_len, z_len);
 	this->rotation = rotation;
 }
 
-double Rectangular::Get_x_length()
+double Rectangular::Getx_length()
 {
 	return x_length;
 }
 
-double Rectangular::Get_y_length()
+double Rectangular::Gety_length()
 {
 	return y_length;
 }
 
-double Rectangular::Get_z_length()
+double Rectangular::Getz_length()
 {
 	return z_length;
 }
 
-void Rectangular::Set_x_length(double x_len)
+void Rectangular::Setx_length(double x_len)
 {
 	x_length = x_len;
 }
 
-void Rectangular::Set_y_length(double y_len)
+void Rectangular::Sety_length(double y_len)
 {
 	y_length = y_len;
 }
 
-void Rectangular::Set_z_length(double z_len)
+void Rectangular::Setz_length(double z_len)
 {
 	z_length = z_len;
 }
 
-void Rectangular::Set_length(double x_len, double y_len, double z_len)
+void Rectangular::Setlength(double x_len, double y_len, double z_len)
 {
 	x_length = x_len;
 	y_length = y_len;
@@ -172,41 +172,42 @@ void Rectangular::draw()
 {
 	glColor3d(red, green, blue);
 	glPushMatrix();
+	glTranslated(x, y, z);
 	glRotated(rotation, 0, 1, 0);
 	glBegin(GL_QUADS);
 
 	// First plane paralell to YZ plane
-	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
-	glVertex3d(x + (x_length / 2), y - (y_length / 2), z + (z_length / 2));
-	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
-	glVertex3d(x + (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	glVertex3d(x_length / 2, y_length / 2, z_length / 2);
+	glVertex3d(x_length / 2, -y_length / 2, z_length / 2);
+	glVertex3d(x_length / 2, -y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, y_length / 2, -z_length / 2);
 	//Second plane paralell to YZ plane
-	glVertex3d(x - (x_length / 2), y + (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y - (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
-	glVertex3d(x - (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	glVertex3d(-x_length / 2, y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, -y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, -y_length / 2, -z_length / 2);
+	glVertex3d(-x_length / 2, y_length / 2, -z_length / 2);
 
 	//First plane paralell to XZ plane
-	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y + (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y + (y_length / 2), z - (z_length / 2));
-	glVertex3d(x + (x_length / 2), y + (y_length / 2), z - (z_length / 2));
+	glVertex3d(x_length / 2, y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, y_length / 2, -z_length / 2);
 	//Second plane paralell to XZ plane
-	glVertex3d(x + (x_length / 2), y - (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y - (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
-	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+	glVertex3d(x_length / 2, -y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, -y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, -y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, -y_length / 2, -z_length / 2);
 
 	// First plane paralell to XY plane
-	glVertex3d(x + (x_length / 2), y + (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y + (y_length / 2), z + (z_length / 2));
-	glVertex3d(x - (x_length / 2), y - (y_length / 2), z + (z_length / 2));
-	glVertex3d(x + (x_length / 2), y - (y_length / 2), z + (z_length / 2));
+	glVertex3d(x_length / 2, y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, y_length / 2, z_length / 2);
+	glVertex3d(-x_length / 2, -y_length / 2, z_length / 2);
+	glVertex3d(x_length / 2, -y_length / 2, z_length / 2);
 	// Second plane paralell to XY plane
-	glVertex3d(x + (x_length / 2), y + (y_length / 2), z - (z_length / 2));
-	glVertex3d(x - (x_length / 2), y + (y_length / 2), z - (z_length / 2));
-	glVertex3d(x - (x_length / 2), y - (y_length / 2), z - (z_length / 2));
-	glVertex3d(x + (x_length / 2), y - (y_length / 2), z - (z_length / 2));
+	glVertex3d(x_length / 2, y_length / 2, -z_length / 2);
+	glVertex3d(-x_length / 2, y_length / 2, -z_length / 2);
+	glVertex3d(-x_length / 2, -y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, -y_length / 2, -z_length / 2);
 
 	glEnd();
 	glPopMatrix();
@@ -217,77 +218,77 @@ void Rectangular::draw()
 
 Triangular::Triangular()
 {
-	Set_side(10.0, 10.0, 10.0);
+	Setside(10.0, 10.0, 10.0);
 }
 
 Triangular::Triangular(double sideA_len, double sideB_len)
 {
 	sideA = sideA_len;
 	sideB = sideB_len;
-	Set_angle(60);
+	Setangle(60);
 }
 
 Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len)
 {
-	Set_side(sideA_len, sideB_len, sideC_len);
+	Setside(sideA_len, sideB_len, sideC_len);
 }
 
 Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len, double depth) 
 {
-	Set_side(sideA_len, sideB_len, sideC_len);
+	Setside(sideA_len, sideB_len, sideC_len);
 	this->depth = depth;
 }
 
 Triangular::Triangular(double sideA_len, double sideB_len, double sideC_len, double depth, double rotation)
 {
-	Set_side(sideA_len, sideB_len, sideC_len);
+	Setside(sideA_len, sideB_len, sideC_len);
 	this->depth = depth;
 	this->rotation = rotation;
 }
-double Triangular::Get_sideA()
+double Triangular::GetsideA()
 {
 	return sideA;
 }
 
-double Triangular::Get_sideB()
+double Triangular::GetsideB()
 {
 	return sideB;
 }
 
-double Triangular::Get_sideC()
+double Triangular::GetsideC()
 {
 	return sideC;
 }
 
-double Triangular::Get_depth()
+double Triangular::Getdepth()
 {
 	return depth;
 }
 
-double Triangular::Get_angle()
+double Triangular::Getangle()
 {
 	return angle * 180 / PI;
 }
 
-void Triangular::Set_sideA(double sideA_len)
+void Triangular::SetsideA(double sideA_len)
 {
 	sideA = sideA_len;
 	UpdateSideC();
 }
 
-void Triangular::Set_sideB(double sideB_len)
+void Triangular::SetsideB(double sideB_len)
 {
 	sideB = sideB_len;
 	UpdateSideC();
 }
 
-void Triangular::Set_sideC(double sideC_len)
+void Triangular::SetsideC(double sideC_len)
 {
 	sideC = sideC_len;
 	UpdateAngle();
 }
 
-void Triangular::Set_side(double sideA_len, double sideB_len, double sideC_len)
+void Triangular::Setside(double sideA_len, double sideB_len, double sideC_len)
 {
 	sideA = sideA_len;
 	sideB = sideB_len;
@@ -295,12 +296,12 @@ void Triangular::Set_side(double sideA_len, double sideB_len, double sideC_len)
 	UpdateAngle();
 }
 
-void Triangular::Set_depth(double len)
+void Triangular::Setdepth(double len)
 {
 	depth = len;
 }
 
-void Triangular::Set_angle(double degree)
+void Triangular::Setangle(double degree)
 {
 	angle = degree / 180 * PI;
 	UpdateSideC();
@@ -319,41 +320,41 @@ void Triangular::UpdateSideC()
 
 void Triangular::draw()
 {
-	glColor3d(red, green, blue);
 	glPushMatrix();
+	glTranslated(x, y, z);
 	glRotated(rotation, 0, 1, 0);
+	glColor3d(red, green, blue);
+
 	glBegin(GL_QUADS);
-
 	// The plane(base) parallel to XZ plane
-	glVertex3d(x - (sideB * cos (angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-
+	glVertex3d( - (sideB * cos (angle) - 2 * sideA) / 3,  - sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d( - (sideB * cos(angle) + sideA) / 3,  - sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d( - (sideB * cos(angle) + sideA) / 3,  - sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3,  - sideB * sin(angle) / 3, - (depth / 2));
+	
 	// The rectangular plane containing sideB
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
+	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3,  (depth / 2));
+	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, - (depth / 2));
 
 	// The rectangular plane containing sideC
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
+	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, (depth / 2));
 
 	glEnd();
 
 	// Two trangle plane
 	glBegin(GL_TRIANGLES);
+	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, (depth / 2));
 
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z + (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z + (depth / 2));
-
-	glVertex3d(x - (sideB * cos(angle) + sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideB * cos(angle) - 2 * sideA) / 3, y - sideB * sin(angle) / 3, z - (depth / 2));
-	glVertex3d(x - (sideA - 2 * sideB * cos(angle)) / 3, y + 2 * sideB * sin(angle) / 3, z - (depth / 2));
+	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, - (depth / 2));
 	
 	glEnd();
 	glPopMatrix();
@@ -388,42 +389,42 @@ Trapezoidal::Trapezoidal(double longside, double offset, double height, double d
 	this->rotation = rotation;
 }
 
-double Trapezoidal::Get_long()
+double Trapezoidal::Getlong()
 {
 	return longside;
 }
 
-double Trapezoidal::Get_offset()
+double Trapezoidal::Getoffset()
 {
 	return offset;
 }
 
-double Trapezoidal::Get_height()
+double Trapezoidal::Getheight()
 {
 	return height;
 }
 
-double Trapezoidal::Get_depth()
+double Trapezoidal::Getdepth()
 {
 	return depth;
 }
 
-void Trapezoidal::Set_long(double longside)
+void Trapezoidal::Setlong(double longside)
 {
 	this->longside = longside;
 }
 
-void Trapezoidal::Set_offset(double offset)
+void Trapezoidal::Setoffset(double offset)
 {
 	this->offset = offset;
 }
 
-void Trapezoidal::Set_height(double height)
+void Trapezoidal::Setheight(double height)
 {
 	this->height = height;
 }
 
-void Trapezoidal::Set_depth(double depth)
+void Trapezoidal::Setdepth(double depth)
 {
 	this->depth = depth;
 }
@@ -439,42 +440,99 @@ void Trapezoidal::draw()
 {
 	glColor3d(red, green, blue);
 	glPushMatrix();
+	glTranslated(x, y, z);
 	glRotated(rotation, 0, 1, 0);
 	glBegin(GL_QUADS);
 
 	// Base
-	glVertex3d(x + longside / 2, -height / 2, z + depth / 2);
-	glVertex3d(x + longside / 2, -height / 2, z - depth / 2);
-	glVertex3d(x - longside / 2, -height / 2, z - depth / 2);
-	glVertex3d(x - longside / 2, -height / 2, z + depth / 2);
+	glVertex3d(longside / 2, -height / 2, depth / 2);
+	glVertex3d(longside / 2, -height / 2, -depth / 2);
+	glVertex3d(-longside / 2, -height / 2, -depth / 2);
+	glVertex3d(-longside / 2, -height / 2, depth / 2);
 	// Top
-	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z + depth / 2);
-	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
-	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z - depth / 2);
-	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);
 
 	// First inclined plane
-	glVertex3d(x + (longside / 2), -height / 2, z + depth / 2);
-	glVertex3d(x + (longside / 2), -height / 2, z - depth / 2);
-	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
-	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	glVertex3d(longside / 2, -height / 2, depth / 2);
+	glVertex3d(longside / 2, -height / 2, -depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
 	// Second inclined plane
-	glVertex3d(x - (longside / 2), -height / 2, z + depth / 2);
-	glVertex3d(x - (longside / 2), -height / 2, z - depth / 2);
-	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z - depth / 2);
-	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	glVertex3d(longside / 2, -height / 2, depth / 2);
+	glVertex3d(-longside / 2, -height / 2, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);
 
 	// First trapezium
-	glVertex3d(x + (longside / 2), -height / 2, z + depth / 2);
-	glVertex3d(x - (longside / 2), -height / 2, z + depth / 2);
-	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z + depth / 2);
-	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z + depth / 2);
+	glVertex3d(longside / 2, -height / 2, depth / 2);
+	glVertex3d(-longside / 2, -height / 2, depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
 	// Second trapezium
-	glVertex3d(x + (longside / 2), -height / 2, z - depth / 2);
-	glVertex3d(x - (longside / 2), -height / 2, z - depth / 2);
-	glVertex3d(x - (longside - 2 * offset) / 2, height / 2, z - depth / 2);
-	glVertex3d(x + (longside - 2 * offset) / 2, height / 2, z - depth / 2);
+	glVertex3d(longside / 2, -height / 2, -depth / 2);
+	glVertex3d(-longside / 2, -height / 2, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
 
 	glEnd();
+	glPopMatrix();
+}
+
+
+// Culinder prism class definition
+
+Cylinder::Cylinder() {
+	this->radius = 10;
+	this->length = 10;
+}
+Cylinder::Cylinder(double radius, double length) {
+	this->radius = radius;
+	this->length = length;
+}
+Cylinder::Cylinder(double radius, double length, double rotation) {
+	this->radius = radius;
+	this->length = length;
+	this->rotation = rotation;
+}
+double Cylinder::Getradius() {
+	return radius;
+}
+double Cylinder::Getlength() {
+	return length;
+}
+void Cylinder::Setradius(double size) {
+	this->radius = size;
+}
+void Cylinder::Setlength(double size) {
+	this->length = size;
+}
+// Currently sets a cylinder with base at z = 0;
+void Cylinder::draw() {
+	glColor3d(red, green, blue);
+
+	glPushMatrix();
+	glTranslated(x, y, z);
+
+	// For the curved surface of the cylinder the idea is to draw 2 half cylinders either side of the origin.
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
+	gluCylinder(gluNewQuadric(), radius, radius, length / 2, 100, 100);
+	glRotated(180, 0, 1, 0);
+	gluCylinder(gluNewQuadric(), radius, radius, length / 2, 100, 100);
+	glPopMatrix();
+
+	// Draw a disc-
+	glColor3d(1, 0, 1);
+	glPushMatrix();
+	glRotated(rotation, 0, 1, 0);
+	glTranslated(0, 0, length / 2);
+	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
+	glTranslated(0, 0, -length);
+	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
+	glPopMatrix();
+
 	glPopMatrix();
 }

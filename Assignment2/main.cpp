@@ -158,19 +158,24 @@ void test()
 	Rectangular rect(100.0, 100.0, 100.0);
 	rect.setColor(1, 1, 1);
 	rect.setPosition(50, 0, 50);
+	rect.setRotation(45);
 	Triangular tri(100.0, 100.0, 100.0);
-	Triangular tri2(100.0, 100.0, 100.0);
+	tri.setColor(1, 1, 1);
+	tri.Setdepth(100);
+	tri.setPosition(100, 0, 100);
+	tri.setRotation(45);
 	Trapezoidal tra(100, 25, 100, 100);
-	tri.setColor(1, 0, 0);
-	tri2.setColor(0, 1, 0);
-	tri.Set_depth(100);
-	tri2.Set_depth(100);
-	//tri.setPosition(100, 0, 0);
-	tri.setRotation(60);
+	tra.setColor(0, 0, 1);
+	tra.setPosition(50,50,50);
+	tra.setRotation(0);
+	Cylinder cyl(50, 100);
+	cyl.setColor(0, 1, 1);
+	cyl.setPosition(50, 100, 50);
+	cyl.setRotation(45);
+	//cyl.draw();
 	//tra.draw();
-	tri.draw();
+	//tri.draw();
 	rect.draw();
-	tri2.draw();
 
 }
 
