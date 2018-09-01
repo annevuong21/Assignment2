@@ -525,7 +525,7 @@ void Cylinder::draw() {
 	glPopMatrix();
 
 	// Draw a disc-
-	glColor3d(1, 0, 1);
+	glColor3d(red, green, blue);
 	glPushMatrix();
 	glRotated(rotation, 0, 1, 0);
 	glTranslated(0, 0, length / 2);
