@@ -463,10 +463,18 @@ void Trapezoidal::draw()
 Cylinder::Cylinder() {
 	this->radius = 10;
 	this->length = 10;
+	this->inner_rad = 0;
 }
 Cylinder::Cylinder(double radius, double length) {
 	this->radius = radius;
 	this->length = length;
+	this->inner_rad = 0;
+}
+double Cylinder::getInnerRad() {
+	return inner_rad;
+}
+void Cylinder::setInnerRad(double radius) {
+	this->inner_rad = radius;
 }
 double Cylinder::getradius() {
 	return radius;
@@ -485,13 +493,21 @@ void Cylinder::draw() {
 	// For the curved surface of the cylinder the idea is to draw 2 half cylinders either side of the origin.
 	glPushMatrix();
 	glRotated(rotation, 0, 1, 0);
-//	glTranslated(100, 100, 100);// -> This line moves the cylinder to a spot in the XZ plane. The corresponding translate functions
+//	glTranslated(100, 0, 100);// -> This line moves the cylinder to a spot in the XZ plane. The corresponding translate functions
 	//								in the disk bits translate them to where they should be relative to the cylinder. In short, if we
 	//								are required to move our shapes, ONE POSSIBLE WAY is to implement translate functions in these places
 	glColor3d(red, green, blue);
-	gluCylinder(gluNewQuadric(), radius, radius, length/2, 100, 100);
+	gluCylinder(gluNewQuadric(), radius, radius, length/2, 30, 30);
+	
+	if (inner_rad != 0) {
+		gluCylinder(gluNewQuadric(), inner_rad, inner_rad, length / 2, 30, 30);
+	}
 	glRotated(180, 0, 1, 0);
-	gluCylinder(gluNewQuadric(), radius, radius, length/2, 100, 100);
+	gluCylinder(gluNewQuadric(), radius, radius, length/2, 30, 30);
+	
+	if (inner_rad != 0) {
+		gluCylinder(gluNewQuadric(), inner_rad, inner_rad, length / 2, 30, 30);
+	}
 	glPopMatrix();
 	
 // ===============================
@@ -499,17 +515,19 @@ void Cylinder::draw() {
 // ===============================	
 	// Draw a disc-
 	glPushMatrix();
-	glColor3d(red, 0, 0);
+	glColor3d(red, green, blue);
 	glRotated(rotation, 0, 1, 0);
 	glTranslated(0, 0, z + length / 2);
 //	glTranslated(100, 100, 100);// -> Corresponding translate function
-	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
+	gluDisk(gluNewQuadric(), inner_rad, radius, 30, 30);
 	glPopMatrix();
-
+	
+	
 	glPushMatrix();
+	glColor3d(red, green, blue);
 	glRotated(rotation, 0, 1, 0);
 	glTranslated(0, 0, z - length/2);
 //	glTranslated(100, 100, 100);// -> Corresponding translate function
-	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
+	gluDisk(gluNewQuadric(), inner_rad, radius, 30, 30);
 	glPopMatrix();
 }

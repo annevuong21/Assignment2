@@ -167,24 +167,25 @@ void drawGoals()
 // Added the draw function for cylinder. Curved surface + end caps to cylinder. I've tested whether the shape can translate and rotate 
 // but the function calls need to be in very particular lines in the code
 // Added data members and data methods (get and set functions). 
-
 //=============================================================================================
+
+/*
+=============================================================================================
+2/09/18
+Added inner radius to the cylinder function so that hollow cylinders can be created
+Added a "Car" class in Vehicle.hpp
+Added a draw function to Vehicle.cpp for class "Car". It draws a car
+Made a change or two in the cylinder class
+=============================================================================================
+*/
 void test() 
 {
-	//Rectangular rect(25,25,25,60);
-	//rect.setColor(1, 0, 1);
-	//rect.draw();
-	Cylinder test(25, 50);
-	test.setColor(1, 1, 0);
-	test.setRotation(90);
+	Car test;
+	test.setRotation(-135);
+	test.setX(0);
+	test.setY(0);
+	test.setZ(0);
 	test.draw();
-	/*Triangular tri(10.0, 10.0, 10.0);
-	tri.setColor(0.5, 0.4, 0);
-	tri.Set_depth(50);
-	*/
-	
-	
-
 	
 }
 

@@ -136,6 +136,7 @@ class Cylinder : public Shape {
 protected:
 	double radius;
 	double length;
+	double inner_rad;
 public:
 	Cylinder();
 	Cylinder(double radius, double length);
@@ -143,6 +144,8 @@ public:
 	double getlength();
 	void setradius(double size);
 	void setlength(double size);
+	double getInnerRad();
+	void setInnerRad(double radius);
 
 	void draw();
 };
