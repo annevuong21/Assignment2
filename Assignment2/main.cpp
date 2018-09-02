@@ -176,12 +176,15 @@ Added inner radius to the cylinder function so that hollow cylinders can be crea
 Added a "Car" class in Vehicle.hpp
 Added a draw function to Vehicle.cpp for class "Car". It draws a car
 Made a change or two in the cylinder class
+
+
 =============================================================================================
 */
 void test() 
 {
+	
 	Car test;
-	test.setRotation(-135);
+	test.setRotation(45);
 	test.setX(0);
 	test.setY(0);
 	test.setZ(0);
