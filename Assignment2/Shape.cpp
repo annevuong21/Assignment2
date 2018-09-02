@@ -327,35 +327,35 @@ void Triangular::draw()
 
 	glBegin(GL_QUADS);
 	// The plane(base) parallel to XZ plane
-	glVertex3d( - (sideB * cos (angle) - 2 * sideA) / 3,  - sideB * sin(angle) / 3, (depth / 2));
-	glVertex3d( - (sideB * cos(angle) + sideA) / 3,  - sideB * sin(angle) / 3, (depth / 2));
-	glVertex3d( - (sideB * cos(angle) + sideA) / 3,  - sideB * sin(angle) / 3, - (depth / 2));
-	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3,  - sideB * sin(angle) / 3, - (depth / 2));
-	
+	glVertex3d( (sideA / 2), 0, (depth / 2));
+	glVertex3d(- (sideA / 2), 0, (depth / 2));
+	glVertex3d(- (sideA / 2), 0,  - (depth / 2));
+	glVertex3d( + (sideA / 2), 0,  - (depth / 2));
+
 	// The rectangular plane containing sideB
-	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
-	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
-	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3,  (depth / 2));
-	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, - (depth / 2));
+	glVertex3d(- (sideA / 2), 0,  (depth / 2));
+	glVertex3d(- (sideA / 2), 0, - (depth / 2));
+	glVertex3d(- (sideA / 2) + sideB * cos(angle), sideB * sin(angle),  - (depth / 2));
+	glVertex3d(- (sideA / 2) + sideB * cos(angle), sideB * sin(angle), (depth / 2));
 
 	// The rectangular plane containing sideC
-	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
-	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
-	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, - (depth / 2));
-	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d((sideA / 2), 0,  (depth / 2));
+	glVertex3d((sideA / 2), 0, - (depth / 2));
+	glVertex3d(- (sideA / 2) + sideB * cos(angle), sideB * sin(angle), - (depth / 2));
+	glVertex3d(- (sideA / 2) + sideB * cos(angle), sideB * sin(angle), (depth / 2));
 
 	glEnd();
 
 	// Two trangle plane
 	glBegin(GL_TRIANGLES);
-	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
-	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, (depth / 2));
-	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, (depth / 2));
+	glVertex3d(-(sideA / 2), 0, (depth / 2));
+	glVertex3d((sideA / 2), 0, (depth / 2));
+	glVertex3d(-(sideA / 2) + sideB * cos(angle), sideB * sin(angle), (depth / 2));
 
-	glVertex3d( - (sideB * cos(angle) + sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
-	glVertex3d( - (sideB * cos(angle) - 2 * sideA) / 3, - sideB * sin(angle) / 3, - (depth / 2));
-	glVertex3d( - (sideA - 2 * sideB * cos(angle)) / 3, 2 * sideB * sin(angle) / 3, - (depth / 2));
-	
+	glVertex3d(-(sideA / 2), 0, -(depth / 2));
+	glVertex3d((sideA / 2), 0, -(depth / 2));
+	glVertex3d(-(sideA / 2) + sideB * cos(angle), sideB * sin(angle), -(depth / 2));
+
 	glEnd();
 	glPopMatrix();
 }
@@ -461,7 +461,7 @@ void Trapezoidal::draw()
 	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
 	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
 	// Second inclined plane
-	glVertex3d(longside / 2, -height / 2, depth / 2);
+	glVertex3d(-longside / 2, -height / 2, depth / 2);
 	glVertex3d(-longside / 2, -height / 2, -depth / 2);
 	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
 	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);

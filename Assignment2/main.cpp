@@ -155,6 +155,7 @@ void drawGoals()
 
 void test()
 {
+	/*
 	Rectangular rect(100.0, 100.0, 100.0);
 	rect.setColor(1, 1, 1);
 	rect.setPosition(50, 0, 50);
@@ -175,8 +176,9 @@ void test()
 	//cyl.draw();
 	//tra.draw();
 	//tri.draw();
-	rect.draw();
-
+	rect.draw();*/
+	Car car;
+	car.draw();
 }
 
 void display() {

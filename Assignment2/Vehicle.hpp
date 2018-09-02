@@ -38,5 +38,11 @@ protected:
 
 double clamp(double a, double n, double b);
 
+
+class Car : public Vehicle
+{
+public:
+	void draw();
+};
 #endif // for MTRN3500_VEHICLE_H
 
