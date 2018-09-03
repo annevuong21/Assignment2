@@ -77,83 +77,47 @@ double clamp(double a, double n, double b) {
 
 };
 
+Car::Car()
+{
+	addShape(new Rectangular(60, 20, 50)); //Body
+	addShape(new Triangular(20, 20, sqrt(800), 50)); // Front
+	addShape(new Triangular(10, 20, sqrt(500), 50, 180)); // Back
+	addShape(new Trapezoidal(50, 10, 10, 50));
+	addShape(new Cylinder(10, 5)); // Wheel 1
+	addShape(new Cylinder(10, 5)); // Wheel 2
+	addShape(new Cylinder(10, 5)); // Wheel 3
+	addShape(new Cylinder(10, 5)); // Wheel 4
+
+	shapes[0]->setPosition(0, 20, 0);
+	shapes[0]->setColor(1, 1, 1);
+
+	shapes[1]->setPosition(40, 10, 0);
+	shapes[1]->setColor(0, 1, 0);
+
+	shapes[2]->setPosition(-35, 10, 0);
+	shapes[2]->setColor(0, 1, 0);
+
+	shapes[3]->setPosition(0, 35, 0);
+	shapes[3]->setColor(0, 0, 1);
+
+	shapes[4]->setPosition(30, 10, 25);
+	shapes[4]->setColor(1, 1, 0);
+
+	shapes[5]->setPosition(-30, 10, 25);
+	shapes[5]->setColor(1, 0, 1);
+
+	shapes[6]->setPosition(-30, 10, -25);
+	shapes[6]->setColor(1, 0, 0);
+
+	shapes[7]->setPosition(30, 10, -25);
+	shapes[7]->setColor(0, 0, 1);
+}
 
 void Car::draw()
 {
-	// Car components
-	Rectangular Body(60, 20, 50);
-	Cylinder Wheel(10, 5);
-	Triangular Front(20, 20);
-	Triangular Back(10, 20);
-	Trapezoidal Top(60, 15, 10);
-
 	glPushMatrix();
 	positionInGL();
-	// This functions SHOULD draw everything with respect to the centre of the car
-	//Body
-
-	glPushMatrix();
-	Body.setColor(1, 1, 1);
-	Body.setY(Wheel.Getradius());
-	glTranslated(0, Body.Gety_length() / 2, 0);
-	Body.draw();
-	glPopMatrix();
-
-	//Wheel1
-	glPushMatrix();
-	Wheel.setColor(1, 1, 0);
-	glTranslated(Body.getX() + Body.Getx_length() / 2, Body.getY(), Body.getZ() + Body.Getz_length() / 2);
-	Wheel.draw();
-	glPopMatrix();
-
-	//Wheel2 
-	glPushMatrix();
-	Wheel.setColor(1, 0, 1);
-	glTranslated(Body.getX() - Body.Getx_length() / 2, Body.getY(), Body.getZ() + Body.Getz_length() / 2);
-	Wheel.draw();
-	glPopMatrix();
-
-	//Wheel 3
-	glPushMatrix();
-	Wheel.setColor(1, 0, 0);
-	glTranslated(Body.getX() + Body.Getx_length() / 2, Body.getY(), Body.getZ() - Body.Getz_length() / 2);
-	Wheel.draw();
-	glPopMatrix();
-
-	//Wheel 4
-	glPushMatrix();
-	Wheel.setColor(0, 0, 1);
-	glTranslated(Body.getX() - Body.Getx_length() / 2, Body.getY(), Body.getZ() - Body.Getz_length() / 2);
-	Wheel.draw();
-	glPopMatrix();
-
-	// Front triangle
-	glPushMatrix();
-	Front.setColor(0, 1, 0);
-	glTranslated(Body.getX() + Body.Getx_length() / 2 + Front.GetsideA() / 2, Body.getY(), Body.getZ());
-	Front.Setangle(90);
-	Front.Setdepth(50);
-	Front.draw();
-	glPopMatrix();
-
-	// Back triangle
-	glPushMatrix();
-	Back.setColor(0, 1, 0);
-	glRotated(180, 0, 1, 0);
-	glRotated(180, 1, 0, 0);
-	glTranslated(Body.getX() + Body.Getx_length() / 2 + Back.GetsideA() / 2, -Body.getY() - Body.Gety_length(), Body.getZ());
-	Back.Setangle(90);
-	Back.Setdepth(50);
-	Back.draw();
-	glPopMatrix();
-
-	// Cabin
-	glPushMatrix();
-	Top.setColor(0, 0, 1);
-	glTranslated(Body.getX(), Body.getY() + Body.Gety_length() + Top.Getheight() / 2, Body.getZ());
-	Top.Setdepth(50);
-	Top.draw();
-	glPopMatrix();
-
+	for (int i = 0; i < shapes.size(); i++)
+		shapes[i]->draw();
 	glPopMatrix();
 }

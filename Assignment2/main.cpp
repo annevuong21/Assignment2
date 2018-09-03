@@ -155,29 +155,32 @@ void drawGoals()
 
 void test()
 {
-	/*
-	Rectangular rect(100.0, 100.0, 100.0);
-	rect.setColor(1, 1, 1);
-	rect.setPosition(50, 0, 50);
-	rect.setRotation(45);
-	Triangular tri(100.0, 100.0, 100.0);
-	tri.setColor(1, 1, 1);
-	tri.Setdepth(100);
-	tri.setPosition(100, 0, 100);
+	/**/
+	Rectangular rect(10.0, 10.0, 10.0);
+	rect.setColor(1, 0, 0);
+	rect.setPosition(20, 0, 20);
+	rect.setRotation(0);
+	Triangular tri(10.0, 10.0, 10.0, 10);
+	tri.setColor(0, 1, 0);
+	tri.setPosition(-20, 0, 20);
 	tri.setRotation(45);
-	Trapezoidal tra(100, 25, 100, 100);
+	Trapezoidal tra(10, 2.5, 10, 10);
 	tra.setColor(0, 0, 1);
-	tra.setPosition(50,50,50);
+	tra.setPosition(-20, 0, -20);
 	tra.setRotation(0);
-	Cylinder cyl(50, 100);
-	cyl.setColor(0, 1, 1);
-	cyl.setPosition(50, 100, 50);
-	cyl.setRotation(45);
-	//cyl.draw();
-	//tra.draw();
-	//tri.draw();
-	rect.draw();*/
+	Cylinder cyl(5, 10);
+	cyl.setColor(1, 1, 1);
+	cyl.setPosition(20, 0, -20);
+	cyl.setRotation(90);
+
+	cyl.draw();
+	tra.draw();
+	tri.draw();
+	rect.draw();
+
 	Car car;
+	car.setPosition(50, 0, 50);
+	car.setRotation(45);
 	car.draw();
 }
 

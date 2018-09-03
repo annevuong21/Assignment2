@@ -27,7 +27,7 @@ public:
 
 	double getSpeed() const { return speed; }
 	double getSteering() const { return steering; }
-
+	
 	void addShape(Shape * shape);
 protected:
 	double speed;     // m/s
@@ -42,6 +42,7 @@ double clamp(double a, double n, double b);
 class Car : public Vehicle
 {
 public:
+	Car();
 	void draw();
 };
 #endif // for MTRN3500_VEHICLE_H

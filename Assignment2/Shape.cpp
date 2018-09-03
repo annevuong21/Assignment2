@@ -172,8 +172,7 @@ void Rectangular::draw()
 {
 	glColor3d(red, green, blue);
 	glPushMatrix();
-	glTranslated(x, y, z);
-	glRotated(rotation, 0, 1, 0);
+	positionInGL();
 	glBegin(GL_QUADS);
 
 	// First plane paralell to YZ plane
@@ -321,8 +320,7 @@ void Triangular::UpdateSideC()
 void Triangular::draw()
 {
 	glPushMatrix();
-	glTranslated(x, y, z);
-	glRotated(rotation, 0, 1, 0);
+	positionInGL();
 	glColor3d(red, green, blue);
 
 	glBegin(GL_QUADS);
@@ -440,8 +438,7 @@ void Trapezoidal::draw()
 {
 	glColor3d(red, green, blue);
 	glPushMatrix();
-	glTranslated(x, y, z);
-	glRotated(rotation, 0, 1, 0);
+	positionInGL();
 	glBegin(GL_QUADS);
 
 	// Base
@@ -484,37 +481,51 @@ void Trapezoidal::draw()
 
 // Culinder prism class definition
 
-Cylinder::Cylinder() {
+Cylinder::Cylinder()
+{
 	this->radius = 10;
 	this->length = 10;
 }
-Cylinder::Cylinder(double radius, double length) {
+
+Cylinder::Cylinder(double radius, double length) 
+{
 	this->radius = radius;
 	this->length = length;
 }
-Cylinder::Cylinder(double radius, double length, double rotation) {
+
+Cylinder::Cylinder(double radius, double length, double rotation)
+{
 	this->radius = radius;
 	this->length = length;
 	this->rotation = rotation;
 }
-double Cylinder::Getradius() {
+
+double Cylinder::Getradius() 
+{
 	return radius;
 }
-double Cylinder::Getlength() {
+
+double Cylinder::Getlength() 
+{
 	return length;
 }
-void Cylinder::Setradius(double size) {
+
+void Cylinder::Setradius(double size) 
+{
 	this->radius = size;
 }
-void Cylinder::Setlength(double size) {
+
+void Cylinder::Setlength(double size) 
+{
 	this->length = size;
 }
+
 // Currently sets a cylinder with base at z = 0;
 void Cylinder::draw() {
 	glColor3d(red, green, blue);
 
 	glPushMatrix();
-	glTranslated(x, y, z);
+	positionInGL();
 
 	// For the curved surface of the cylinder the idea is to draw 2 half cylinders either side of the origin.
 	glPushMatrix();
@@ -525,7 +536,6 @@ void Cylinder::draw() {
 	glPopMatrix();
 
 	// Draw a disc-
-	glColor3d(red, green, blue);
 	glPushMatrix();
 	glRotated(rotation, 0, 1, 0);
 	glTranslated(0, 0, length / 2);
