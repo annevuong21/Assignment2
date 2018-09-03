@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
+    <ClInclude Include="Car.hpp" />
+    <ClInclude Include="Cylinder.hpp" />
     <ClInclude Include="Frustum.hpp" />
     <ClInclude Include="Ground.hpp" />
     <ClInclude Include="HUD.hpp" />
@@ -28,13 +30,18 @@
     <ClInclude Include="Obstacle.hpp" />
     <ClInclude Include="ObstacleManager.hpp" />
     <ClInclude Include="Quaternion.hpp" />
+    <ClInclude Include="Rectangular.hpp" />
     <ClInclude Include="RemoteDataManager.hpp" />
     <ClInclude Include="Shape.hpp" />
+    <ClInclude Include="Trapezoidal.hpp" />
+    <ClInclude Include="Triangluar.hpp" />
     <ClInclude Include="VectorMaths.hpp" />
     <ClInclude Include="Vehicle.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HUD.cpp" />
@@ -44,8 +51,11 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleManager.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="Rectangluar.cpp" />
     <ClCompile Include="RemoteDataManager.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="Trapezoidal.cpp" />
+    <ClCompile Include="Triangular.cpp" />
     <ClCompile Include="VectorMaths.cpp" />
     <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>

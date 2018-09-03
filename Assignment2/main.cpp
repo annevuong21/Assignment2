@@ -38,6 +38,12 @@
 #include "Messages.hpp"
 #include "HUD.hpp"
 #include "ObstacleManager.hpp"
+#include "Car.hpp"
+
+#include "Rectangular.hpp"
+#include "Triangluar.hpp"
+#include "Trapezoidal.hpp"
+#include "Cylinder.hpp"
 
 void display();
 void reshape(int width, int height);
