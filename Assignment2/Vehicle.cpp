@@ -35,7 +35,6 @@ void Vehicle::update(double dt)
 	// update position by integrating the speed
 	x += speed * dt * cos(rotation * 3.1415926535 / 180.0);
 	z += speed * dt * sin(rotation * 3.1415926535 / 180.0);
-
 	// update heading
 	rotation += dt * steering * speed;
 
