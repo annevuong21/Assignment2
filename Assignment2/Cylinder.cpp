@@ -63,7 +63,6 @@ void Cylinder::draw() {
 
 	// For the curved surface of the cylinder the idea is to draw 2 half cylinders either side of the origin.
 	glPushMatrix();
-	glRotated(rotation, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), radius, radius, length / 2, 100, 100);
 	glRotated(180, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), radius, radius, length / 2, 100, 100);
@@ -71,7 +70,6 @@ void Cylinder::draw() {
 
 	// Draw a disc-
 	glPushMatrix();
-	glRotated(rotation, 0, 1, 0);
 	glTranslated(0, 0, length / 2);
 	gluDisk(gluNewQuadric(), 0, radius, 100, 100);
 	glTranslated(0, 0, -length);
