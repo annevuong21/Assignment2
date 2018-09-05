@@ -361,7 +361,7 @@ void idle() {
 								VehicleModel vm = models[i];
 								
 								// uncomment the line below to create remote vehicles
-								otherVehicles[vm.remoteID] = new Car();
+								otherVehicles[vm.remoteID] = new Car(vm);
 
 								//
 								// more student code goes here

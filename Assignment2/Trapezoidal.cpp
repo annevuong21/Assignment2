@@ -46,6 +46,11 @@ double Trapezoidal::Getlong()
 	return longside;
 }
 
+double Trapezoidal::Getshort()
+{
+	return shortside;
+}
+
 double Trapezoidal::Getoffset()
 {
 	return offset;
@@ -66,9 +71,17 @@ void Trapezoidal::Setlong(double longside)
 	this->longside = longside;
 }
 
+void Trapezoidal::Setshort(double shortside)
+{
+	this->shortside = shortside;
+	offset = (longside - shortside) / 2;
+}
+
+
 void Trapezoidal::Setoffset(double offset)
 {
 	this->offset = offset;
+	shortside = longside - 2 * offset;
 }
 
 void Trapezoidal::Setheight(double height)
@@ -84,7 +97,7 @@ void Trapezoidal::Setdepth(double depth)
 void Trapezoidal::SetTrapezium(double longside, double offset, double height)
 {
 	this->longside = longside;
-	this->offset = offset;
+	Setoffset(offset);
 	this->height = height;
 }
 

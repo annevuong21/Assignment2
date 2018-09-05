@@ -9,11 +9,13 @@ public:
 	Trapezoidal(double longside, double offset, double height, double depth, double rotation);
 
 	double Getlong();
+	double Getshort();
 	double Getoffset();
 	double Getheight();
 	double Getdepth();
 
 	void Setlong(double longside);
+	void Setshort(double shortside);
 	void Setoffset(double offset);
 	void Setheight(double height);
 	void Setdepth(double depth);
@@ -23,6 +25,7 @@ public:
 
 protected:
 	double longside;
+	double shortside;
 	double offset;
 	double height;
 	double depth;

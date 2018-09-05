@@ -11,9 +11,6 @@ public:
 	void draw();
 
 protected:
-	VehicleState vstate;
-	ShapeType stype;
-	ShapeParameter sparameter;
-	ShapeInit sinit;
-	VehicleModel vmodel;
+	VehicleState vs;
+	VehicleModel vm;
 };

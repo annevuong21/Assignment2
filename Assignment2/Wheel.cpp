@@ -13,15 +13,18 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 #endif
-Wheel::Wheel(double radius, double length) {
+Wheel::Wheel(double radius, double length) : Cylinder (radius, length)
+{
 	this->radius = radius;
 	this->length = length;
 }
-Wheel::Wheel(double radius, double length, double rotation) {
+Wheel::Wheel(double radius, double length, double rotation) : Cylinder(radius, length, rotation)
+{
 	Wheel(radius, length);
 	this->rotation = rotation;
 }
-void Wheel::draw() {
+void Wheel::draw()
+{
 	glColor3d(red, green, blue);
 
 	glPushMatrix();

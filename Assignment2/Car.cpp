@@ -22,6 +22,8 @@
 
 Car::Car()
 {
+	// Default model
+	vm.remoteID = 0;
 	addShape(new Rectangular(6, 2, 5)); //Body
 	addShape(new Triangular(2, 2, sqrt(8), 5)); // Front
 	addShape(new Triangular(1, 2, sqrt(5), 5, 180)); // Back
@@ -59,16 +61,91 @@ Car::Car()
 
 Car::Car(VehicleModel vm)
 {
-	
+	this->vm = vm;
+	for (int i = 0; i < vm.shapes.size(); i++)
+	{
+		switch (vm.shapes[i].type)
+		{
+		case RECTANGULAR_PRISM:
+		{
+			double x_len = vm.shapes[i].params.rect.xlen;
+			double y_len = vm.shapes[i].params.rect.ylen;
+			double z_len = vm.shapes[i].params.rect.zlen;
+			Rectangular* rect = new Rectangular(x_len, y_len, z_len, vm.shapes[i].rotation);
+			rect->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+			rect->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
+			addShape(rect);
+			break;
+		}
+		case TRIANGULAR_PRISM:
+		{
+			double a_len = vm.shapes[i].params.tri.alen;
+			double b_len = vm.shapes[i].params.tri.blen;
+			double angle = vm.shapes[i].params.tri.angle;
+			Triangular* tri = new Triangular(a_len, b_len);
+			tri->Setangle(angle);
+			tri->Setdepth(vm.shapes[i].params.tri.depth);
+			tri->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+			tri->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
+			tri->setRotation(vm.shapes[i].rotation);
+			addShape(tri);
+			break;
+		}
+		case TRAPEZOIDAL_PRISM:
+		{
+			double a_len = vm.shapes[i].params.trap.alen;
+			double offset = vm.shapes[i].params.trap.aoff;
+			double height = vm.shapes[i].params.trap.height;
+			double depth = vm.shapes[i].params.trap.depth;
+			Trapezoidal* trap = new Trapezoidal(a_len, offset, height, depth, vm.shapes[i].rotation);
+			trap->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+			trap->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
+			addShape(trap);
+			break;
+		}
+		case CYLINDER:
+		{
+			double radius = vm.shapes[i].params.cyl.radius;
+			double depth = vm.shapes[i].params.cyl.depth;
+			if (vm.shapes[i].params.cyl.isRolling == true)
+			{
+				Wheel* wheel = new Wheel(radius, depth, vm.shapes[i].rotation);
+				wheel->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+				wheel->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
+				addShape(wheel);
+			}
+			else
+			{
+				Cylinder* cyl = new Cylinder(radius, depth, vm.shapes[i].rotation);
+				cyl->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
+				cyl->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
+				addShape(cyl);
+			}
+			break;
+		}
+		default:
+			{break; }
+		}
+	}
 }
 
 void Car::draw()
 {
 	glPushMatrix();
 	positionInGL();
+	if (vm.remoteID == 0)
+	{
+		shapes[4]->setRotation(steering);
+		shapes[7]->setRotation(steering);
 
-	shapes[4]->setRotation(steering);
-	shapes[7]->setRotation(steering);
+	}
+	else
+	{
+		//if ()
+		{
+
+		}
+	}
 
 	for (int i = 0; i < shapes.size(); i++) {
 		shapes[i]->draw();

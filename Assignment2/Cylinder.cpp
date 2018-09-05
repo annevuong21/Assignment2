@@ -17,8 +17,6 @@
 
 Cylinder::Cylinder()
 {
-	this->radius = 10;
-	this->length = 10;
 }
 
 Cylinder::Cylinder(double radius, double length)
