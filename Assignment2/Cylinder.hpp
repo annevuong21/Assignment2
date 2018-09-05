@@ -1,3 +1,4 @@
+#pragma once
 #include "Shape.hpp"
 
 class Cylinder : public Shape {

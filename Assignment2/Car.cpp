@@ -3,6 +3,7 @@
 #include "Triangluar.hpp"
 #include "Trapezoidal.hpp"
 #include "Cylinder.hpp"
+#include "Wheel.hpp"
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -25,11 +26,11 @@ Car::Car()
 	addShape(new Triangular(2, 2, sqrt(8), 5)); // Front
 	addShape(new Triangular(1, 2, sqrt(5), 5, 180)); // Back
 	addShape(new Trapezoidal(5, 1, 1, 5));
-	addShape(new Cylinder(1, 0.5)); // Wheel 1
-	addShape(new Cylinder(1, 0.5)); // Wheel 2
-	addShape(new Cylinder(1, 0.5)); // Wheel 3
-	addShape(new Cylinder(1, 0.5)); // Wheel 4
-
+	addShape(new Wheel(1, 0.5)); // Wheel 1
+	addShape(new Wheel(1, 0.5)); // Wheel 2
+	addShape(new Wheel(1, 0.5)); // Wheel 3
+	addShape(new Wheel(1, 0.5)); // Wheel 4
+	
 	shapes[0]->setPosition(0, 2, 0);
 	shapes[0]->setColor(1, 1, 1);
 
@@ -52,7 +53,8 @@ Car::Car()
 	shapes[6]->setColor(1, 0, 0);
 
 	shapes[7]->setPosition(3, 1, -2.5); // Front Left Wheel
-	shapes[7]->setColor(0, 0, 1);
+	shapes[7]->setColor(0, 0, 1); 
+	
 }
 
 Car::Car(VehicleModel vm)
@@ -68,7 +70,8 @@ void Car::draw()
 	shapes[4]->setRotation(steering);
 	shapes[7]->setRotation(steering);
 
-	for (int i = 0; i < shapes.size(); i++)
+	for (int i = 0; i < shapes.size(); i++) {
 		shapes[i]->draw();
+	}
 	glPopMatrix();
 }
