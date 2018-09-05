@@ -55,6 +55,11 @@ Car::Car()
 	shapes[7]->setColor(0, 0, 1);
 }
 
+Car::Car(VehicleModel vm)
+{
+	
+}
+
 void Car::draw()
 {
 	glPushMatrix();
