@@ -24,13 +24,14 @@ Car::Car()
 {
 	// Default model
 	vm.remoteID = 0;
-	/*
+	/**/
 	// Rectangular Prism (Body)
 	ShapeInit body;
 	body.type = RECTANGULAR_PRISM;
 	body.params.rect.xlen = 6;
 	body.params.rect.ylen = 2;
 	body.params.rect.zlen = 5;
+	body.rotation = 0;
 	body.xyz[0] = 0;
 	body.xyz[1] = 2;
 	body.xyz[2] = 0;
@@ -43,9 +44,10 @@ Car::Car()
 	ShapeInit front;
 	front.type = TRIANGULAR_PRISM;
 	front.params.tri.alen = 2;
-	front.params.tri.angle = 45;
+	front.params.tri.angle = 90;
 	front.params.tri.blen = 2;
 	front.params.tri.depth = 5;
+	front.rotation = 0;
 	front.xyz[0] = 4;
 	front.xyz[1] = 1;
 	front.xyz[2] = 0;
@@ -57,9 +59,9 @@ Car::Car()
 	// Triangular Prism (Back)
 	ShapeInit back;
 	back.type = TRIANGULAR_PRISM;
-	back.params.tri.alen = 2;
-	back.params.tri.angle = 63.43494894947;
-	back.params.tri.blen = 1;
+	back.params.tri.alen = 1;
+	back.params.tri.angle = 90;
+	back.params.tri.blen = 2;
 	back.params.tri.depth = 5;
 	back.rotation = 180;
 	back.xyz[0] = -3.5;
@@ -77,9 +79,10 @@ Car::Car()
 	cabin.params.trap.aoff = 1;
 	cabin.params.trap.depth = 5;
 	cabin.params.trap.height = 1;
+	cabin.rotation = 0;
 	cabin.xyz[0] = 0;
 	cabin.xyz[1] = 3.5;
-	cabin.xyz[0] = 0;
+	cabin.xyz[2] = 0;
 	cabin.rgb[0] = 0;
 	cabin.rgb[1] = 0;
 	cabin.rgb[2] = 1;
@@ -92,9 +95,10 @@ Car::Car()
 	wheel1.params.cyl.depth = 0.5;
 	wheel1.params.cyl.isRolling = true;
 	wheel1.params.cyl.isSteering = true;
+	wheel1.rotation = 0;
 	wheel1.xyz[0] = 3;
 	wheel1.xyz[1] = 1;
-	wheel1.xyz[0] = 2.5;
+	wheel1.xyz[2] = 2.5;
 	wheel1.rgb[0] = 1;
 	wheel1.rgb[1] = 1;
 	wheel1.rgb[2] = 0;
@@ -107,9 +111,10 @@ Car::Car()
 	wheel2.params.cyl.depth = 0.5;
 	wheel2.params.cyl.isRolling = true;
 	wheel2.params.cyl.isSteering = false;
+	wheel2.rotation = 0;
 	wheel2.xyz[0] = -3;
 	wheel2.xyz[1] = 1;
-	wheel2.xyz[0] = 2.5;
+	wheel2.xyz[2] = 2.5;
 	wheel2.rgb[0] = 1;
 	wheel2.rgb[1] = 0;
 	wheel2.rgb[2] = 1;
@@ -122,9 +127,10 @@ Car::Car()
 	wheel3.params.cyl.depth = 0.5;
 	wheel3.params.cyl.isRolling = true;
 	wheel3.params.cyl.isSteering = false;
+	wheel3.rotation = 0;
 	wheel3.xyz[0] = -3;
 	wheel3.xyz[1] = 1;
-	wheel3.xyz[0] = -2.5;
+	wheel3.xyz[2] = -2.5;
 	wheel3.rgb[0] = 1;
 	wheel3.rgb[1] = 0;
 	wheel3.rgb[2] = 0;
@@ -137,17 +143,18 @@ Car::Car()
 	wheel4.params.cyl.depth = 0.5;
 	wheel4.params.cyl.isRolling = true;
 	wheel4.params.cyl.isSteering = true;
+	wheel4.rotation = 0;
 	wheel4.xyz[0] = 3;
 	wheel4.xyz[1] = 1;
-	wheel4.xyz[0] = -2.5;
+	wheel4.xyz[2] = -2.5;
 	wheel4.rgb[0] = 0;
 	wheel4.rgb[1] = 0;
 	wheel4.rgb[2] = 1;
 	vm.shapes.push_back(wheel4);
 
-	Initialization();*/
+	Initialization();
 	//////////////////////  old  way   ////////////////////////////
-	/**/
+	/*
 	addShape(new Rectangular(6, 2, 5)); //Body
 	addShape(new Triangular(2, 2, sqrt(8), 5)); // Front
 	addShape(new Triangular(1, 2, sqrt(5), 5, 180)); // Back
@@ -180,7 +187,7 @@ Car::Car()
 
 	shapes[7]->setPosition(3, 1, -2.5); // Front Left Wheel
 	shapes[7]->setColor(0, 0, 1); 
-	
+	*/
 }
 
 Car::Car(VehicleModel vm)
