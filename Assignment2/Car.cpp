@@ -196,6 +196,16 @@ Car::Car(VehicleModel vm)
 	Initialization();
 }
 
+VehicleModel Car::GetVehicleModel()
+{
+	return vm;
+}
+
+VehicleState Car::GetVehicleState()
+{
+	return vs;
+}
+
 void Car::Initialization()
 {
 	// Vehicle Model Initialization

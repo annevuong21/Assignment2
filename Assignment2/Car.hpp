@@ -8,6 +8,9 @@ public:
 	Car(); // local model
 	Car(VehicleModel vm);
 
+	VehicleModel GetVehicleModel();
+	VehicleState GetVehicleState();
+
 	void Initialization();
 	void draw();
 

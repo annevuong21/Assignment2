@@ -323,9 +323,7 @@ void idle() {
 					VehicleModel vm;
 					vm.remoteID = 0;
 
-					//
-					// student code goes here
-					//
+					vm = dynamic_cast<Car*>(vehicle)->GetVehicleModel();
 
 					RemoteDataManager::Write(GetVehicleModelStr(vm));
 				}
