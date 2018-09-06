@@ -8,6 +8,7 @@ public:
 	Car(); // local model
 	Car(VehicleModel vm);
 
+	void Initialization();
 	void draw();
 
 protected:

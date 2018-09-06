@@ -161,8 +161,8 @@ void drawGoals()
 
 void test()
 {
-	Vehicle * car = new Car;
-	car->update(8,0,1);
+	//Vehicle * car = new Car;
+	//car->update(8,0,1);
 	//car->draw();
 }
 	

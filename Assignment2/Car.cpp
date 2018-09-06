@@ -24,6 +24,130 @@ Car::Car()
 {
 	// Default model
 	vm.remoteID = 0;
+	/*
+	// Rectangular Prism (Body)
+	ShapeInit body;
+	body.type = RECTANGULAR_PRISM;
+	body.params.rect.xlen = 6;
+	body.params.rect.ylen = 2;
+	body.params.rect.zlen = 5;
+	body.xyz[0] = 0;
+	body.xyz[1] = 2;
+	body.xyz[2] = 0;
+	body.rgb[0] = 1;
+	body.rgb[1] = 1;
+	body.rgb[2] = 1;
+	vm.shapes.push_back(body);
+
+	// Triangular Prism (Front)
+	ShapeInit front;
+	front.type = TRIANGULAR_PRISM;
+	front.params.tri.alen = 2;
+	front.params.tri.angle = 45;
+	front.params.tri.blen = 2;
+	front.params.tri.depth = 5;
+	front.xyz[0] = 4;
+	front.xyz[1] = 1;
+	front.xyz[2] = 0;
+	front.rgb[0] = 0;
+	front.rgb[1] = 1;
+	front.rgb[2] = 0;
+	vm.shapes.push_back(front);
+
+	// Triangular Prism (Back)
+	ShapeInit back;
+	back.type = TRIANGULAR_PRISM;
+	back.params.tri.alen = 2;
+	back.params.tri.angle = 63.43494894947;
+	back.params.tri.blen = 1;
+	back.params.tri.depth = 5;
+	back.rotation = 180;
+	back.xyz[0] = -3.5;
+	back.xyz[1] = 1;
+	back.xyz[2] = 0;
+	back.rgb[0] = 0;
+	back.rgb[1] = 1;
+	back.rgb[2] = 0;
+	vm.shapes.push_back(back);
+
+	// Trapezodial (Cabin)
+	ShapeInit cabin;
+	cabin.type = TRAPEZOIDAL_PRISM;
+	cabin.params.trap.alen = 5;
+	cabin.params.trap.aoff = 1;
+	cabin.params.trap.depth = 5;
+	cabin.params.trap.height = 1;
+	cabin.xyz[0] = 0;
+	cabin.xyz[1] = 3.5;
+	cabin.xyz[0] = 0;
+	cabin.rgb[0] = 0;
+	cabin.rgb[1] = 0;
+	cabin.rgb[2] = 1;
+	vm.shapes.push_back(cabin);
+
+	// Wheel 1 (Front Right)
+	ShapeInit wheel1;
+	wheel1.type = CYLINDER;
+	wheel1.params.cyl.radius = 1;
+	wheel1.params.cyl.depth = 0.5;
+	wheel1.params.cyl.isRolling = true;
+	wheel1.params.cyl.isSteering = true;
+	wheel1.xyz[0] = 3;
+	wheel1.xyz[1] = 1;
+	wheel1.xyz[0] = 2.5;
+	wheel1.rgb[0] = 1;
+	wheel1.rgb[1] = 1;
+	wheel1.rgb[2] = 0;
+	vm.shapes.push_back(wheel1);
+
+	// Wheel 2 (Back Right)
+	ShapeInit wheel2;
+	wheel2.type = CYLINDER;
+	wheel2.params.cyl.radius = 1;
+	wheel2.params.cyl.depth = 0.5;
+	wheel2.params.cyl.isRolling = true;
+	wheel2.params.cyl.isSteering = false;
+	wheel2.xyz[0] = -3;
+	wheel2.xyz[1] = 1;
+	wheel2.xyz[0] = 2.5;
+	wheel2.rgb[0] = 1;
+	wheel2.rgb[1] = 0;
+	wheel2.rgb[2] = 1;
+	vm.shapes.push_back(wheel2);
+
+	// Wheel 3 (Back Left)
+	ShapeInit wheel3;
+	wheel3.type = CYLINDER;
+	wheel3.params.cyl.radius = 1;
+	wheel3.params.cyl.depth = 0.5;
+	wheel3.params.cyl.isRolling = true;
+	wheel3.params.cyl.isSteering = false;
+	wheel3.xyz[0] = -3;
+	wheel3.xyz[1] = 1;
+	wheel3.xyz[0] = -2.5;
+	wheel3.rgb[0] = 1;
+	wheel3.rgb[1] = 0;
+	wheel3.rgb[2] = 0;
+	vm.shapes.push_back(wheel3);
+
+	// Wheel 4 (Front Left)
+	ShapeInit wheel4;
+	wheel4.type = CYLINDER;
+	wheel4.params.cyl.radius = 1;
+	wheel4.params.cyl.depth = 0.5;
+	wheel4.params.cyl.isRolling = true;
+	wheel4.params.cyl.isSteering = true;
+	wheel4.xyz[0] = 3;
+	wheel4.xyz[1] = 1;
+	wheel4.xyz[0] = -2.5;
+	wheel4.rgb[0] = 0;
+	wheel4.rgb[1] = 0;
+	wheel4.rgb[2] = 1;
+	vm.shapes.push_back(wheel4);
+
+	Initialization();*/
+	//////////////////////  old  way   ////////////////////////////
+	/**/
 	addShape(new Rectangular(6, 2, 5)); //Body
 	addShape(new Triangular(2, 2, sqrt(8), 5)); // Front
 	addShape(new Triangular(1, 2, sqrt(5), 5, 180)); // Back
@@ -62,6 +186,12 @@ Car::Car()
 Car::Car(VehicleModel vm)
 {
 	this->vm = vm;
+	Initialization();
+}
+
+void Car::Initialization()
+{
+	// Vehicle Model Initialization
 	for (int i = 0; i < vm.shapes.size(); i++)
 	{
 		switch (vm.shapes[i].type)
@@ -124,10 +254,10 @@ Car::Car(VehicleModel vm)
 			break;
 		}
 		default:
-			{break; }
+		{break; }
 		}
 	}
-}
+ }
 
 void Car::draw()
 {
