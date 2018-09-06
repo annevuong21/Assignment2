@@ -76,6 +76,7 @@ Car::Car()
 	ShapeInit cabin;
 	cabin.type = TRAPEZOIDAL_PRISM;
 	cabin.params.trap.alen = 5;
+	cabin.params.trap.blen = 3;
 	cabin.params.trap.aoff = 1;
 	cabin.params.trap.depth = 5;
 	cabin.params.trap.height = 1;
