@@ -10,11 +10,22 @@ public:
 
 	VehicleModel GetVehicleModel();
 	VehicleState GetVehicleState();
+	std::vector<int> Getrollwheellist();
+	std::vector<int> Getsteerwhellist();
 
-	void Initialization();
+	void Addrollwheel(int position);
+	void Addsteerwheel(int position);
+
+	void update(double dt);
+
 	void draw();
 
 protected:
 	VehicleState vs;
 	VehicleModel vm;
+	std::vector<int> rollwheelposition; // Find the index in shapes
+	std::vector<int> steerwheelposition;
+	double roll;
+	void Initialization();
+
 };

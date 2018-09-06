@@ -18,11 +18,18 @@ Wheel::Wheel(double radius, double length) : Cylinder (radius, length)
 	this->radius = radius;
 	this->length = length;
 }
+
 Wheel::Wheel(double radius, double length, double rotation) : Cylinder(radius, length, rotation)
 {
 	Wheel(radius, length);
 	this->rotation = rotation;
 }
+
+void Wheel::Setroll(double roll)
+{
+	this->roll = roll / 3.1415926535 / Getradius() * 180.0;
+}
+
 void Wheel::draw()
 {
 	glColor3d(red, green, blue);
@@ -47,6 +54,7 @@ void Wheel::draw()
 	// WHEEL SPOKE CODE HERE
 	glPushMatrix();
 	glRotated(90, 1, 0, 0);
+	glRotated(-roll, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), radius / 12, radius / 10, radius, 25, 25);
 	glRotated(180, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), radius / 12, radius / 10, radius, 25, 25);

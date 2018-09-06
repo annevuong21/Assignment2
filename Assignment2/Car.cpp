@@ -24,7 +24,7 @@ Car::Car()
 {
 	// Default model
 	vm.remoteID = 0;
-	/**/
+	
 	// Rectangular Prism (Body)
 	ShapeInit body;
 	body.type = RECTANGULAR_PRISM;
@@ -207,6 +207,26 @@ VehicleState Car::GetVehicleState()
 	return vs;
 }
 
+std::vector<int> Car::Getrollwheellist()
+{
+	return rollwheelposition;
+}
+
+std::vector<int> Car::Getsteerwhellist()
+{
+	return steerwheelposition;
+}
+
+void Car::Addrollwheel(int position)
+{
+	rollwheelposition.push_back(position);
+}
+
+void Car::Addsteerwheel(int position)
+{
+	steerwheelposition.push_back(position);
+}
+
 void Car::Initialization()
 {
 	// Vehicle Model Initialization
@@ -261,6 +281,11 @@ void Car::Initialization()
 				wheel->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
 				wheel->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
 				addShape(wheel);
+				Addrollwheel(shapes.size() - 1); // The index in shapes.
+				if (vm.shapes[i].params.cyl.isSteering == true)
+				{
+					Addsteerwheel(shapes.size() - 1);
+				}
 			}
 			else
 			{
@@ -277,25 +302,60 @@ void Car::Initialization()
 	}
  }
 
+void Car::update(double dt)
+{
+	speed = clamp(MAX_BACKWARD_SPEED_MPS, speed, MAX_FORWARD_SPEED_MPS);
+	steering = clamp(MAX_LEFT_STEERING_DEGS, steering, MAX_RIGHT_STEERING_DEGS);
+
+	// update position by integrating the speed
+	x += speed * dt * cos(rotation * 3.1415926535 / 180.0);
+	z += speed * dt * sin(rotation * 3.1415926535 / 180.0);
+	// update heading
+	rotation += dt * steering * speed;
+
+	while (rotation > 360) rotation -= 360;
+	while (rotation < 0) rotation += 360;
+
+	// update wheels rolling
+	roll += speed * dt;
+
+	while (roll > 2 * 3.1415926535) roll -= 2 * 3.1415926535;
+	while (roll < 0) roll += 2 * 3.1415926535;
+
+	if (fabs(speed) < .1)
+		speed = 0;
+	if (fabs(steering) < .1)
+		steering = 0;
+
+
+}
+
 void Car::draw()
 {
 	glPushMatrix();
 	positionInGL();
-	if (vm.remoteID == 0)
+	/*if (vm.remoteID == 0)
 	{
 		shapes[4]->setRotation(steering);
 		shapes[7]->setRotation(steering);
 
-	}
-	else
-	{
-		//if ()
-		{
-
-		}
-	}
+	}*/
 
 	for (int i = 0; i < shapes.size(); i++) {
+		for (int j = 0; j < rollwheelposition.size(); j++)
+		{
+			if (i == rollwheelposition[j])
+			{
+				dynamic_cast<Wheel*>(shapes[i])->Setroll(roll);
+				for (int k = 0; k < steerwheelposition.size(); k++)
+				{
+					if (i == steerwheelposition[k])
+					{
+						shapes[i]->setRotation(steering);
+					}
+				}
+			}
+		}
 		shapes[i]->draw();
 	}
 	glPopMatrix();
