@@ -19,8 +19,8 @@ public:
 
 	virtual void draw() = 0;
 
-	static const int MAX_FORWARD_SPEED_MPS = 8;
-	static const int MAX_BACKWARD_SPEED_MPS = -8;
+	static const int MAX_FORWARD_SPEED_MPS = 10;
+	static const int MAX_BACKWARD_SPEED_MPS = -4;
 	static const int MAX_LEFT_STEERING_DEGS = 15;
 	static const int MAX_RIGHT_STEERING_DEGS = -15;
 	static const int VEHICLE_BOUNDS = 3;

@@ -25,7 +25,7 @@ protected:
 	VehicleModel vm;
 	std::vector<int> rollwheelposition; // Find the index in shapes
 	std::vector<int> steerwheelposition;
-	double roll;
+	double wheelroll;
 	void Initialization();
 
 };
