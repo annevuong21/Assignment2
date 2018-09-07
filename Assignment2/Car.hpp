@@ -23,7 +23,7 @@ public:
 protected:
 	VehicleState vs;
 	VehicleModel vm;
-	std::vector<int> rollwheelposition; // Find the index in shapes
+	std::vector<int> rollwheelposition; // Store the index of wheels in shapes
 	std::vector<int> steerwheelposition;
 	double wheelroll;
 	void Initialization();

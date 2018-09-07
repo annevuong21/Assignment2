@@ -25,6 +25,7 @@ Car::Car()
 	// Default model
 	vm.remoteID = 0;
 	
+	// Shapes Appearance Parameters
 	// Rectangular Prism (Body)
 	ShapeInit body;
 	body.type = RECTANGULAR_PRISM;
@@ -32,13 +33,9 @@ Car::Car()
 	body.params.rect.ylen = 2;
 	body.params.rect.zlen = 5;
 	body.rotation = 0;
-	body.xyz[0] = 0;
-	body.xyz[1] = 2;
-	body.xyz[2] = 0;
 	body.rgb[0] = 1;
 	body.rgb[1] = 1;
 	body.rgb[2] = 1;
-	vm.shapes.push_back(body);
 
 	// Triangular Prism (Front)
 	ShapeInit front;
@@ -48,13 +45,9 @@ Car::Car()
 	front.params.tri.blen = 2;
 	front.params.tri.depth = 5;
 	front.rotation = 0;
-	front.xyz[0] = 4;
-	front.xyz[1] = 1;
-	front.xyz[2] = 0;
 	front.rgb[0] = 0;
 	front.rgb[1] = 1;
 	front.rgb[2] = 0;
-	vm.shapes.push_back(front);
 
 	// Triangular Prism (Back)
 	ShapeInit back;
@@ -64,13 +57,9 @@ Car::Car()
 	back.params.tri.blen = 2;
 	back.params.tri.depth = 5;
 	back.rotation = 180;
-	back.xyz[0] = -3.5;
-	back.xyz[1] = 1;
-	back.xyz[2] = 0;
 	back.rgb[0] = 0;
 	back.rgb[1] = 1;
 	back.rgb[2] = 0;
-	vm.shapes.push_back(back);
 
 	// Trapezodial (Cabin)
 	ShapeInit cabin;
@@ -81,13 +70,9 @@ Car::Car()
 	cabin.params.trap.depth = 5;
 	cabin.params.trap.height = 1;
 	cabin.rotation = 0;
-	cabin.xyz[0] = 0;
-	cabin.xyz[1] = 3.5;
-	cabin.xyz[2] = 0;
 	cabin.rgb[0] = 0;
 	cabin.rgb[1] = 0;
 	cabin.rgb[2] = 1;
-	vm.shapes.push_back(cabin);
 
 	// Wheel 1 (Front Right)
 	ShapeInit wheel1;
@@ -97,13 +82,9 @@ Car::Car()
 	wheel1.params.cyl.isRolling = true;
 	wheel1.params.cyl.isSteering = true;
 	wheel1.rotation = 0;
-	wheel1.xyz[0] = 3;
-	wheel1.xyz[1] = 1;
-	wheel1.xyz[2] = 2.5;
 	wheel1.rgb[0] = 1;
 	wheel1.rgb[1] = 1;
 	wheel1.rgb[2] = 0;
-	vm.shapes.push_back(wheel1);
 
 	// Wheel 2 (Back Right)
 	ShapeInit wheel2;
@@ -113,13 +94,9 @@ Car::Car()
 	wheel2.params.cyl.isRolling = true;
 	wheel2.params.cyl.isSteering = false;
 	wheel2.rotation = 0;
-	wheel2.xyz[0] = -3;
-	wheel2.xyz[1] = 1;
-	wheel2.xyz[2] = 2.5;
 	wheel2.rgb[0] = 1;
 	wheel2.rgb[1] = 0;
 	wheel2.rgb[2] = 1;
-	vm.shapes.push_back(wheel2);
 
 	// Wheel 3 (Back Left)
 	ShapeInit wheel3;
@@ -129,13 +106,9 @@ Car::Car()
 	wheel3.params.cyl.isRolling = true;
 	wheel3.params.cyl.isSteering = false;
 	wheel3.rotation = 0;
-	wheel3.xyz[0] = -3;
-	wheel3.xyz[1] = 1;
-	wheel3.xyz[2] = -2.5;
 	wheel3.rgb[0] = 1;
 	wheel3.rgb[1] = 0;
 	wheel3.rgb[2] = 0;
-	vm.shapes.push_back(wheel3);
 
 	// Wheel 4 (Front Left)
 	ShapeInit wheel4;
@@ -145,12 +118,51 @@ Car::Car()
 	wheel4.params.cyl.isRolling = true;
 	wheel4.params.cyl.isSteering = true;
 	wheel4.rotation = 0;
-	wheel4.xyz[0] = 3;
-	wheel4.xyz[1] = 1;
-	wheel4.xyz[2] = -2.5;
 	wheel4.rgb[0] = 0;
 	wheel4.rgb[1] = 0;
 	wheel4.rgb[2] = 1;
+
+	// Shapes Position Parameters
+	body.xyz[0] = 0;
+	body.xyz[1] = wheel1.params.cyl.radius + body.params.rect.ylen / 2;
+	body.xyz[2] = 0;
+
+	front.xyz[0] = (body.params.rect.xlen + front.params.tri.alen) / 2;
+	front.xyz[1] = wheel1.params.cyl.radius;
+	front.xyz[2] = 0;
+
+	back.xyz[0] = -(body.params.rect.xlen + back.params.tri.alen) / 2;
+	back.xyz[1] = wheel1.params.cyl.radius;
+	back.xyz[2] = 0;
+
+	cabin.xyz[0] = 0;
+	cabin.xyz[1] = wheel1.params.cyl.radius + body.params.rect.ylen + cabin.params.trap.height / 2;
+	cabin.xyz[2] = 0;
+
+	wheel1.xyz[0] = body.params.rect.xlen / 2;
+	wheel1.xyz[1] = wheel1.params.cyl.radius;
+	wheel1.xyz[2] = body.params.rect.zlen / 2;
+
+	wheel2.xyz[0] = -body.params.rect.xlen / 2;
+	wheel2.xyz[1] = wheel2.params.cyl.radius;
+	wheel2.xyz[2] = body.params.rect.zlen / 2;
+
+	wheel3.xyz[0] = -body.params.rect.xlen / 2;
+	wheel3.xyz[1] = wheel3.params.cyl.radius;
+	wheel3.xyz[2] = -body.params.rect.zlen / 2;
+
+	wheel4.xyz[0] = body.params.rect.xlen / 2;
+	wheel4.xyz[1] = wheel4.params.cyl.radius;
+	wheel4.xyz[2] = -body.params.rect.zlen / 2;
+
+	// Add to shapes
+	vm.shapes.push_back(body);
+	vm.shapes.push_back(front);
+	vm.shapes.push_back(back);
+	vm.shapes.push_back(cabin);
+	vm.shapes.push_back(wheel1);
+	vm.shapes.push_back(wheel2);
+	vm.shapes.push_back(wheel3);
 	vm.shapes.push_back(wheel4);
 
 	Initialization();
@@ -300,14 +312,14 @@ void Car::draw()
 	glPushMatrix();
 	positionInGL();
 
-	for (int i = 0; i < shapes.size(); i++)
+	for (int i = 0; i < shapes.size(); i++) // Draw all the shapes
 	{
-		for (int j = 0; j < rollwheelposition.size(); j++)
+		for (int j = 0; j < rollwheelposition.size(); j++) // Find wheels
 		{
 			if (i == rollwheelposition[j])
 			{
 				dynamic_cast<Wheel*>(shapes[i])->Setroll(wheelroll);
-				for (int k = 0; k < steerwheelposition.size(); k++)
+				for (int k = 0; k < steerwheelposition.size(); k++) // Find steering wheels
 				{
 					if (i == steerwheelposition[k])
 					{
