@@ -29,9 +29,9 @@ Car::Car()
 	// Rectangular Prism (Body)
 	ShapeInit body;
 	body.type = RECTANGULAR_PRISM;
-	body.params.rect.xlen = 6;
-	body.params.rect.ylen = 2;
-	body.params.rect.zlen = 5;
+	body.params.rect.xlen = 3;
+	body.params.rect.ylen = 1;
+	body.params.rect.zlen = 2.5;
 	body.rotation = 0;
 	body.rgb[0] = 1;
 	body.rgb[1] = 1;
@@ -40,10 +40,10 @@ Car::Car()
 	// Triangular Prism (Front)
 	ShapeInit front;
 	front.type = TRIANGULAR_PRISM;
-	front.params.tri.alen = 2;
+	front.params.tri.alen = 1;
 	front.params.tri.angle = 90;
-	front.params.tri.blen = 2;
-	front.params.tri.depth = 5;
+	front.params.tri.blen = 1;
+	front.params.tri.depth = 2.5;
 	front.rotation = 0;
 	front.rgb[0] = 0;
 	front.rgb[1] = 1;
@@ -52,10 +52,10 @@ Car::Car()
 	// Triangular Prism (Back)
 	ShapeInit back;
 	back.type = TRIANGULAR_PRISM;
-	back.params.tri.alen = 1;
+	back.params.tri.alen = 0.5;
 	back.params.tri.angle = 90;
-	back.params.tri.blen = 2;
-	back.params.tri.depth = 5;
+	back.params.tri.blen = 1;
+	back.params.tri.depth = 2.5;
 	back.rotation = 180;
 	back.rgb[0] = 0;
 	back.rgb[1] = 1;
@@ -64,11 +64,11 @@ Car::Car()
 	// Trapezodial (Cabin)
 	ShapeInit cabin;
 	cabin.type = TRAPEZOIDAL_PRISM;
-	cabin.params.trap.alen = 5;
-	cabin.params.trap.blen = 3;
-	cabin.params.trap.aoff = 1;
-	cabin.params.trap.depth = 5;
-	cabin.params.trap.height = 1;
+	cabin.params.trap.alen = 2.5;
+	cabin.params.trap.blen = 1.5;
+	cabin.params.trap.aoff = 0.5;
+	cabin.params.trap.depth = 2.5;
+	cabin.params.trap.height = 0.5;
 	cabin.rotation = 0;
 	cabin.rgb[0] = 0;
 	cabin.rgb[1] = 0;
@@ -77,8 +77,8 @@ Car::Car()
 	// Wheel 1 (Front Right)
 	ShapeInit wheel1;
 	wheel1.type = CYLINDER;
-	wheel1.params.cyl.radius = 1;
-	wheel1.params.cyl.depth = 0.5;
+	wheel1.params.cyl.radius = 0.5;
+	wheel1.params.cyl.depth = 0.25;
 	wheel1.params.cyl.isRolling = true;
 	wheel1.params.cyl.isSteering = true;
 	wheel1.rotation = 0;
@@ -89,8 +89,8 @@ Car::Car()
 	// Wheel 2 (Back Right)
 	ShapeInit wheel2;
 	wheel2.type = CYLINDER;
-	wheel2.params.cyl.radius = 1;
-	wheel2.params.cyl.depth = 0.5;
+	wheel2.params.cyl.radius = 0.5;
+	wheel2.params.cyl.depth = 0.25;
 	wheel2.params.cyl.isRolling = true;
 	wheel2.params.cyl.isSteering = false;
 	wheel2.rotation = 0;
@@ -101,8 +101,8 @@ Car::Car()
 	// Wheel 3 (Back Left)
 	ShapeInit wheel3;
 	wheel3.type = CYLINDER;
-	wheel3.params.cyl.radius = 1;
-	wheel3.params.cyl.depth = 0.5;
+	wheel3.params.cyl.radius = 0.5;
+	wheel3.params.cyl.depth = 0.25;
 	wheel3.params.cyl.isRolling = true;
 	wheel3.params.cyl.isSteering = false;
 	wheel3.rotation = 0;
@@ -113,8 +113,8 @@ Car::Car()
 	// Wheel 4 (Front Left)
 	ShapeInit wheel4;
 	wheel4.type = CYLINDER;
-	wheel4.params.cyl.radius = 1;
-	wheel4.params.cyl.depth = 0.5;
+	wheel4.params.cyl.radius = 0.5;
+	wheel4.params.cyl.depth = 0.25;
 	wheel4.params.cyl.isRolling = true;
 	wheel4.params.cyl.isSteering = true;
 	wheel4.rotation = 0;

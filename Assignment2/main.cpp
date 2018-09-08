@@ -361,9 +361,6 @@ void idle() {
 								// uncomment the line below to create remote vehicles
 								otherVehicles[vm.remoteID] = new Car(vm);
 
-								//
-								// more student code goes here
-								//
 							}
 							break;
 						}
