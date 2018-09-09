@@ -26,6 +26,7 @@
     <ClInclude Include="Ground.hpp" />
     <ClInclude Include="HUD.hpp" />
     <ClInclude Include="KeyManager.hpp" />
+    <ClInclude Include="Kyle.h" />
     <ClInclude Include="Messages.hpp" />
     <ClInclude Include="Obstacle.hpp" />
     <ClInclude Include="ObstacleManager.hpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="KeyManager.cpp" />
+    <ClCompile Include="kyle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Messages.cpp" />
     <ClCompile Include="Obstacle.cpp" />

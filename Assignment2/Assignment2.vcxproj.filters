@@ -72,6 +72,9 @@
     <ClInclude Include="Wheel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Kyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -132,6 +135,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Wheel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kyle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
