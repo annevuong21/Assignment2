@@ -17,12 +17,14 @@ Wheel::Wheel(double radius, double length) : Cylinder (radius, length)
 {
 	this->radius = radius;
 	this->length = length;
+	roll = 0;
 }
 
 Wheel::Wheel(double radius, double length, double rotation) : Cylinder(radius, length, rotation)
 {
 	Wheel(radius, length);
 	this->rotation = rotation;
+	roll = 0;
 }
 
 void Wheel::Setroll(double roll)
