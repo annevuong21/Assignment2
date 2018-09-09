@@ -28,6 +28,8 @@
 #endif
 
 Kyle::Kyle() {
+	vm.remoteID == 0;
+
 	ShapeInit wheel;
 	wheel.type = CYLINDER;
 	wheel.params.cyl.depth = 2.5;
@@ -199,6 +201,7 @@ void Kyle::initialisation() {
 		i++;
 	}
 }
+
 void Kyle::update(double dt) {
 	speed = clamp(MAX_BACKWARD_SPEED_MPS, speed, MAX_FORWARD_SPEED_MPS);
 	steering = clamp(MAX_LEFT_STEERING_DEGS, steering, MAX_RIGHT_STEERING_DEGS);
@@ -213,10 +216,13 @@ void Kyle::update(double dt) {
 	while (rotation < 0) rotation += 360;
 
 	// update wheels rolling
+	
+	if (wheelroll > 10*3.1415926535) wheelroll = 0;
+	if (wheelroll < -10*3.1415926535) wheelroll = 0;
+	
+	std::cout << wheelroll << std::endl;
 	wheelroll += speed * dt;
 
-	while (wheelroll > 2 * 3.1415926535) wheelroll -= 2 * 3.1415926535;
-	while (wheelroll < 0) wheelroll += 2 * 3.1415926535;
 
 	if (fabs(speed) < .1)
 		speed = 0;
@@ -232,10 +238,14 @@ void Kyle::draw() {
 	positionInGL();
 	glRotated(steering, 1, 0, 0);
 	int i = 0;
-	while (i < shapes.size()) {
-		dynamic_cast<Wheel*>(shapes[i])->Setroll(wheelroll);
-		shapes[i]->draw();
-		i++;
+	std::vector<Shape *>::iterator it;
+	it = shapes.begin();
+	while (it != shapes.end()) {
+		if ((*it) == dynamic_cast<Wheel*>(*it)) {
+			dynamic_cast<Wheel*>(*it)->Setroll(wheelroll);
+		}
+		(*it)->draw();
+		it++;
 	}
 
 	

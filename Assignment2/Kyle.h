@@ -12,4 +12,5 @@ protected:
 	VehicleModel vm;
 	VehicleState vs;
 	void initialisation();
+	
 };
