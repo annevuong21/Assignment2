@@ -32,6 +32,8 @@
     <ClInclude Include="Shape.hpp" />
     <ClInclude Include="VectorMaths.hpp" />
     <ClInclude Include="Vehicle.hpp" />
+    <ClInclude Include="XboxHeader.h" />
+    <ClInclude Include="XInputWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
