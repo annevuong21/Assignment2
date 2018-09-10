@@ -295,8 +295,8 @@ void Car::update(double dt)
 
 	// update wheels rolling
 
-	while (wheelroll > 2 * 3.1415926535) wheelroll = 0;
-	while (wheelroll < 0) wheelroll = 0;
+	if (wheelroll > 2 * 3.1415926535) wheelroll = 0;
+	if (wheelroll < -2 * 3.1415926535) wheelroll = 0;
 	wheelroll += speed * dt;
 
 	if (fabs(speed) < .1)
