@@ -38,7 +38,7 @@ void Wheel::draw()
 
 	glPushMatrix();
 	positionInGL();
-
+	glTranslated(0, radius, 0);
 	// For the curved surface of the cylinder the idea is to draw 2 half cylinders either side of the origin.
 	glPushMatrix();
 	gluCylinder(gluNewQuadric(), radius, radius, length / 2, 25, 25);

@@ -75,37 +75,37 @@ void Rectangular::draw()
 	glBegin(GL_QUADS);
 
 	// First plane paralell to YZ plane
-	glVertex3d(x_length / 2, y_length / 2, z_length / 2);
-	glVertex3d(x_length / 2, -y_length / 2, z_length / 2);
-	glVertex3d(x_length / 2, -y_length / 2, -z_length / 2);
-	glVertex3d(x_length / 2, y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, y_length , z_length / 2);
+	glVertex3d(x_length / 2, 0, z_length / 2);
+	glVertex3d(x_length / 2, 0, -z_length / 2);
+	glVertex3d(x_length / 2, y_length, -z_length / 2);
 	//Second plane paralell to YZ plane
-	glVertex3d(-x_length / 2, y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, -y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, -y_length / 2, -z_length / 2);
-	glVertex3d(-x_length / 2, y_length / 2, -z_length / 2);
+	glVertex3d(-x_length / 2, y_length , z_length / 2);
+	glVertex3d(-x_length / 2, 0, z_length / 2);
+	glVertex3d(-x_length / 2, 0, -z_length / 2);
+	glVertex3d(-x_length / 2, y_length, -z_length / 2);
 
 	//First plane paralell to XZ plane
-	glVertex3d(x_length / 2, y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, y_length / 2, -z_length / 2);
-	glVertex3d(x_length / 2, y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, y_length, z_length / 2);
+	glVertex3d(-x_length / 2, y_length, z_length / 2);
+	glVertex3d(-x_length / 2, y_length, -z_length / 2);
+	glVertex3d(x_length / 2, y_length, -z_length / 2);
 	//Second plane paralell to XZ plane
-	glVertex3d(x_length / 2, -y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, -y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, -y_length / 2, -z_length / 2);
-	glVertex3d(x_length / 2, -y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, 0, z_length / 2);
+	glVertex3d(-x_length / 2, 0, z_length / 2);
+	glVertex3d(-x_length / 2, 0, -z_length / 2);
+	glVertex3d(x_length / 2, 0, -z_length / 2);
 
 	// First plane paralell to XY plane
-	glVertex3d(x_length / 2, y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, y_length / 2, z_length / 2);
-	glVertex3d(-x_length / 2, -y_length / 2, z_length / 2);
-	glVertex3d(x_length / 2, -y_length / 2, z_length / 2);
+	glVertex3d(x_length / 2, y_length , z_length / 2);
+	glVertex3d(-x_length / 2, y_length , z_length / 2);
+	glVertex3d(-x_length / 2, 0, z_length / 2);
+	glVertex3d(x_length / 2, 0, z_length / 2);
 	// Second plane paralell to XY plane
-	glVertex3d(x_length / 2, y_length / 2, -z_length / 2);
-	glVertex3d(-x_length / 2, y_length / 2, -z_length / 2);
-	glVertex3d(-x_length / 2, -y_length / 2, -z_length / 2);
-	glVertex3d(x_length / 2, -y_length / 2, -z_length / 2);
+	glVertex3d(x_length / 2, y_length , -z_length / 2);
+	glVertex3d(-x_length / 2, y_length, -z_length / 2);
+	glVertex3d(-x_length / 2, 0 , -z_length / 2);
+	glVertex3d(x_length / 2, 0, -z_length / 2);
 
 	glEnd();
 	glPopMatrix();

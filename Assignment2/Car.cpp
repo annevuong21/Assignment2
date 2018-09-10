@@ -47,7 +47,7 @@ Car::Car()
 	front.rotation = 0;
 	front.rgb[0] = 0;
 	front.rgb[1] = 1;
-	front.rgb[2] = 0;
+	front.rgb[2] = 1;
 
 	// Triangular Prism (Back)
 	ShapeInit back;
@@ -124,7 +124,7 @@ Car::Car()
 
 	// Shapes Position Parameters
 	body.xyz[0] = 0;
-	body.xyz[1] = wheel1.params.cyl.radius + body.params.rect.ylen / 2;
+	body.xyz[1] = wheel1.params.cyl.radius;
 	body.xyz[2] = 0;
 
 	front.xyz[0] = (body.params.rect.xlen + front.params.tri.alen) / 2;
@@ -136,23 +136,23 @@ Car::Car()
 	back.xyz[2] = 0;
 
 	cabin.xyz[0] = 0;
-	cabin.xyz[1] = wheel1.params.cyl.radius + body.params.rect.ylen + cabin.params.trap.height / 2;
+	cabin.xyz[1] = wheel1.params.cyl.radius + body.params.rect.ylen;
 	cabin.xyz[2] = 0;
 
 	wheel1.xyz[0] = body.params.rect.xlen / 2;
-	wheel1.xyz[1] = wheel1.params.cyl.radius;
+	wheel1.xyz[1] = 0;
 	wheel1.xyz[2] = body.params.rect.zlen / 2;
 
 	wheel2.xyz[0] = -body.params.rect.xlen / 2;
-	wheel2.xyz[1] = wheel2.params.cyl.radius;
+	wheel2.xyz[1] = 0;
 	wheel2.xyz[2] = body.params.rect.zlen / 2;
 
 	wheel3.xyz[0] = -body.params.rect.xlen / 2;
-	wheel3.xyz[1] = wheel3.params.cyl.radius;
+	wheel3.xyz[1] = 0;
 	wheel3.xyz[2] = -body.params.rect.zlen / 2;
 
 	wheel4.xyz[0] = body.params.rect.xlen / 2;
-	wheel4.xyz[1] = wheel4.params.cyl.radius;
+	wheel4.xyz[1] = 0;
 	wheel4.xyz[2] = -body.params.rect.zlen / 2;
 
 	// Add to shapes
@@ -295,8 +295,8 @@ void Car::update(double dt)
 
 	// update wheels rolling
 
-	if (wheelroll > 2 * 3.1415926535) wheelroll = 0;
-	if (wheelroll < 0) wheelroll = 0;
+	while (wheelroll > 2 * 3.1415926535) wheelroll = 0;
+	while (wheelroll < 0) wheelroll = 0;
 	wheelroll += speed * dt;
 
 	if (fabs(speed) < .1)

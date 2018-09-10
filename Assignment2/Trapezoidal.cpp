@@ -109,37 +109,37 @@ void Trapezoidal::draw()
 	glBegin(GL_QUADS);
 
 	// Base
-	glVertex3d(longside / 2, -height / 2, depth / 2);
-	glVertex3d(longside / 2, -height / 2, -depth / 2);
-	glVertex3d(-longside / 2, -height / 2, -depth / 2);
-	glVertex3d(-longside / 2, -height / 2, depth / 2);
+	glVertex3d(longside / 2, 0, depth / 2);
+	glVertex3d(longside / 2, 0, -depth / 2);
+	glVertex3d(-longside / 2, 0, -depth / 2);
+	glVertex3d(-longside / 2, 0, depth / 2);
 	// Top
-	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
-	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
-	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
-	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height, depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height , -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height , depth / 2);
 
 	// First inclined plane
-	glVertex3d(longside / 2, -height / 2, depth / 2);
-	glVertex3d(longside / 2, -height / 2, -depth / 2);
-	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
-	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
+	glVertex3d(longside / 2, 0, depth / 2);
+	glVertex3d(longside / 2, 0, -depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height , -depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height , depth / 2);
 	// Second inclined plane
-	glVertex3d(-longside / 2, -height / 2, depth / 2);
-	glVertex3d(-longside / 2, -height / 2, -depth / 2);
-	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
-	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);
+	glVertex3d(-longside / 2, 0, depth / 2);
+	glVertex3d(-longside / 2, 0, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height , -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height , depth / 2);
 
 	// First trapezium
-	glVertex3d(longside / 2, -height / 2, depth / 2);
-	glVertex3d(-longside / 2, -height / 2, depth / 2);
-	glVertex3d(-(longside - 2 * offset) / 2, height / 2, depth / 2);
-	glVertex3d((longside - 2 * offset) / 2, height / 2, depth / 2);
+	glVertex3d(longside / 2, 0, depth / 2);
+	glVertex3d(-longside / 2, 0, depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height , depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height , depth / 2);
 	// Second trapezium
-	glVertex3d(longside / 2, -height / 2, -depth / 2);
-	glVertex3d(-longside / 2, -height / 2, -depth / 2);
-	glVertex3d(-(longside - 2 * offset) / 2, height / 2, -depth / 2);
-	glVertex3d((longside - 2 * offset) / 2, height / 2, -depth / 2);
+	glVertex3d(longside / 2, 0, -depth / 2);
+	glVertex3d(-longside / 2, 0, -depth / 2);
+	glVertex3d(-(longside - 2 * offset) / 2, height, -depth / 2);
+	glVertex3d((longside - 2 * offset) / 2, height, -depth / 2);
 
 	glEnd();
 	glPopMatrix();
