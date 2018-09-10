@@ -140,7 +140,7 @@ int main(int argc, char ** argv) {
 	if (vehicle != NULL) {
 		delete vehicle;
 	}
-
+	delete wrap;
 	return 0;
 }
 
@@ -267,25 +267,71 @@ void idle() {
 	steering = 0;
 	if (control.IsConnected())
 	{
-		control.SetDeadzone(4000);
+		control.SetDeadzone(5000);
+
 		if (control.RightTriggerLocation() > 0)
 		{
-			SHORT Accelerate = control.RightTriggerLocation();
+			BYTE Accelerate = control.RightTriggerLocation();
 			speed = static_cast<double>(Accelerate) * Vehicle::MAX_FORWARD_SPEED_MPS / 255.0;
 		}
 
 		if (control.LeftTriggerLocation() > 0)
 		{
-			SHORT decelerate = control.LeftTriggerLocation();
-			speed = static_cast<double>(decelerate) * Vehicle::MAX_BACKWARD_SPEED_MPS / 255.0;
+			BYTE Decelerate = control.LeftTriggerLocation();
+			speed = static_cast<double>(Decelerate) * Vehicle::MAX_BACKWARD_SPEED_MPS / 255.0;
 		}
+
 		if (control.RightThumbLocation().GetX() != 0 && control.RightThumbLocation().GetY() != 0)
 		{
-			double degree = tan(control.RightThumbLocation().GetY() / control.RightThumbLocation().GetX());
-			// Restrist Steer input angle
-			if (-3.1415926535 / 2 < degree < 0) degree = 0;
-			if (-3.1415926535 < degree < -3.1415926535 / 2) degree = 3.1415926535;
-			steering = (degree / 3.1415926535 * 180) / 90 * Vehicle::MAX_LEFT_STEERING_DEGS;
+			double x = static_cast<double>(control.RightThumbLocation().GetX());
+			double y = static_cast<double>(control.RightThumbLocation().GetY());
+			double degree = atan2(y , x);
+			// Restrist Steer input angle to half circle
+			if (-3.1415926535 / 2 <= degree && degree < 0) { degree = 0; }
+			if (-3.1415926535 < degree && degree < -3.1415926535 / 2) { degree = 3.1415926535; }
+			steering = cos(degree) * Vehicle::MAX_LEFT_STEERING_DEGS;
+		}
+
+		if (control.PressedUpDpad())
+		{
+			Camera::get()->moveForward();
+		}
+
+		if (control.PressedDownDpad())
+		{
+			Camera::get()->moveBackward();
+		}
+
+		if (control.PressedRightDpad())
+		{
+			Camera::get()->strafeRight();
+		}
+
+		if (control.PressedLeftDpad())
+		{
+			Camera::get()->strafeLeft();
+		}
+
+		if (control.PressedX())
+		{
+			Camera::get()->strafeUp();
+		}
+
+		if (control.PressedA())
+		{
+			Camera::get()->strafeDown();
+		}
+
+		if (control.PressedLeftThumb())
+		{
+			Camera::get()->togglePursuitMode();
+		}
+		
+		if (control.LeftThumbLocation().GetX() != 0 && control.LeftThumbLocation().GetY() != 0)
+		{
+			int dx = static_cast<int>(control.LeftThumbLocation().GetX() / 3276.7);
+			int dy = static_cast<int>(control.LeftThumbLocation().GetY() / 3276.7);
+			Camera::get()->mouseRotateCamera(dx, -dy);
 		}
 	}
 	//else
