@@ -40,7 +40,7 @@ Kyle::Kyle() {
 	wheel.params.cyl.isRolling = true;
 
 	wheel.xyz[0] = 0;
-	wheel.xyz[1] = wheel.params.cyl.radius;
+	wheel.xyz[1] = 0;
 	wheel.xyz[2] = 0;
 
 	ShapeInit leg1;
@@ -53,7 +53,7 @@ Kyle::Kyle() {
 	leg1.rgb[2] = 0;
 
 	leg1.xyz[0] = 0;
-	leg1.xyz[1] = 7.5 + wheel.params.cyl.radius;
+	leg1.xyz[1] = wheel.params.cyl.radius;
 	leg1.xyz[2] = wheel.params.cyl.depth + leg1.params.rect.zlen/1.5;
 
 	ShapeInit leg2;
@@ -66,7 +66,7 @@ Kyle::Kyle() {
 	leg2.rgb[2] = 1;
 
 	leg2.xyz[0] = 0;
-	leg2.xyz[1] = 7.5 + wheel.params.cyl.radius;
+	leg2.xyz[1] = wheel.params.cyl.radius;
 	leg2.xyz[2] = -wheel.params.cyl.depth - leg1.params.rect.zlen / 1.5;
 
 	ShapeInit pedals;
@@ -78,7 +78,7 @@ Kyle::Kyle() {
 	pedals.rgb[2] = 1;
 
 	pedals.xyz[0] = 0;
-	pedals.xyz[1] = wheel.params.cyl.radius;
+	pedals.xyz[1] = wheel.params.cyl.radius - pedals.params.cyl.radius;
 	pedals.xyz[2] = 0;
 
 	ShapeInit body;
@@ -91,7 +91,7 @@ Kyle::Kyle() {
 	body.rgb[2] = 0;
 
 	body.xyz[0] = 0;
-	body.xyz[1] = 7.5 + wheel.params.cyl.radius + body.params.rect.ylen/2;
+	body.xyz[1] = wheel.params.cyl.radius + body.params.rect.ylen/2;
 	body.xyz[2] = 0;
 	
 	ShapeInit arm1;
@@ -130,7 +130,7 @@ Kyle::Kyle() {
 	head.rgb[2] = 1;
 
 	head.xyz[0] = 0;
-	head.xyz[1] = 7.5 + wheel.params.cyl.radius + body.params.rect.ylen / 2 + 10;
+	head.xyz[1] = 5+wheel.params.cyl.radius + body.params.rect.ylen / 2 + 10;
 	head.xyz[2] = 0;
 
 	vm.shapes.push_back(head);
@@ -224,6 +224,7 @@ void Kyle::update(double dt) {
 	if (wheelroll > 10*3.1415926535) wheelroll = 0;
 	if (wheelroll < -10*3.1415926535) wheelroll = 0;
 	
+	// Having terminal prints outs of variables are so good for debugging
 	//std::cout << wheelroll << std::endl;
 	wheelroll += speed * dt;
 
