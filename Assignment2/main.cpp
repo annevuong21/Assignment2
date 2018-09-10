@@ -5,6 +5,7 @@
 #include <cstring>
 #include <sstream>
 #include <map>
+#include <cmath>
 
 #ifdef __APPLE__
 	#include <OpenGL/gl.h>
@@ -30,6 +31,7 @@
 #include "Camera.hpp"
 #include "Ground.hpp"
 #include "KeyManager.hpp"
+#include "XBoxController.h"
 
 #include "Shape.hpp"
 #include "Vehicle.hpp"
@@ -78,6 +80,10 @@ std::deque<GoalState> goals;
 std::map<int, Vehicle *> otherVehicles;
 
 int frameCounter = 0;
+
+// XboxController Code
+XInputWrapper* wrap = new XInputWrapper();
+GamePad::XBoxController control(wrap, 0);
 
 //int _tmain(int argc, _TCHAR* argv[]) {
 int main(int argc, char ** argv) {
@@ -257,47 +263,73 @@ double getTime()
 
 void idle() {
 
-	if (KeyManager::get()->isAsciiKeyPressed('a')) {
-		Camera::get()->strafeLeft();
-	}
-
-	if (KeyManager::get()->isAsciiKeyPressed('c')) {
-		Camera::get()->strafeDown();
-	}
-
-	if (KeyManager::get()->isAsciiKeyPressed('d')) {
-		Camera::get()->strafeRight();
-	}
-
-	if (KeyManager::get()->isAsciiKeyPressed('s')) {
-		Camera::get()->moveBackward();
-	}
-
-	if (KeyManager::get()->isAsciiKeyPressed('w')) {
-		Camera::get()->moveForward();
-	}
-
-	if (KeyManager::get()->isAsciiKeyPressed(' ')) {
-		Camera::get()->strafeUp();
-	}
-
 	speed = 0;
 	steering = 0;
+	if (control.IsConnected())
+	{
+		control.SetDeadzone(4000);
+		if (control.RightTriggerLocation() > 0)
+		{
+			SHORT Accelerate = control.RightTriggerLocation();
+			speed = static_cast<double>(Accelerate) * Vehicle::MAX_FORWARD_SPEED_MPS / 255.0;
+		}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
-		steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;   
+		if (control.LeftTriggerLocation() > 0)
+		{
+			SHORT decelerate = control.LeftTriggerLocation();
+			speed = static_cast<double>(decelerate) * Vehicle::MAX_BACKWARD_SPEED_MPS / 255.0;
+		}
+		if (control.RightThumbLocation().GetX() != 0 && control.RightThumbLocation().GetY() != 0)
+		{
+			double degree = tan(control.RightThumbLocation().GetY() / control.RightThumbLocation().GetX());
+			// Restrist Steer input angle
+			if (-3.1415926535 / 2 < degree < 0) degree = 0;
+			if (-3.1415926535 < degree < -3.1415926535 / 2) degree = 3.1415926535;
+			steering = (degree / 3.1415926535 * 180) / 90 * Vehicle::MAX_LEFT_STEERING_DEGS;
+		}
 	}
+	//else
+	{
+		if (KeyManager::get()->isAsciiKeyPressed('a')) {
+			Camera::get()->strafeLeft();
+		}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
-		steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
-	}
+		if (KeyManager::get()->isAsciiKeyPressed('c')) {
+			Camera::get()->strafeDown();
+		}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
-		speed = Vehicle::MAX_FORWARD_SPEED_MPS;
-	}
+		if (KeyManager::get()->isAsciiKeyPressed('d')) {
+			Camera::get()->strafeRight();
+		}
 
-	if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
-		speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
+		if (KeyManager::get()->isAsciiKeyPressed('s')) {
+			Camera::get()->moveBackward();
+		}
+
+		if (KeyManager::get()->isAsciiKeyPressed('w')) {
+			Camera::get()->moveForward();
+		}
+
+		if (KeyManager::get()->isAsciiKeyPressed(' ')) {
+			Camera::get()->strafeUp();
+		}
+
+
+		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
+			steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
+		}
+
+		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_RIGHT)) {
+			steering = Vehicle::MAX_RIGHT_STEERING_DEGS * -1;
+		}
+
+		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_UP)) {
+			speed = Vehicle::MAX_FORWARD_SPEED_MPS;
+		}
+
+		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
+			speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
+		}
 	}
 
 	// attempt to do data communications every 4 frames if we've created a local vehicle
