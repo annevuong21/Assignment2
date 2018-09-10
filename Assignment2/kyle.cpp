@@ -187,7 +187,6 @@ void Kyle::initialisation() {
 				Wheel* wheel = new Wheel(radius, depth, vm.shapes[i].rotation);
 				wheel->setPosition(vm.shapes[i].xyz[0], vm.shapes[i].xyz[1], vm.shapes[i].xyz[2]);
 				wheel->setColor(vm.shapes[i].rgb[0], vm.shapes[i].rgb[1], vm.shapes[i].rgb[2]);
-				wheel->Setroll(wheelroll);
 				addShape(wheel);
 			}
 			else
@@ -201,7 +200,12 @@ void Kyle::initialisation() {
 		i++;
 	}
 }
-
+VehicleModel Kyle::GetVehicleModel() {
+	return vm;
+}
+VehicleState Kyle::GetVehicleState() {
+	return vs;
+}
 void Kyle::update(double dt) {
 	speed = clamp(MAX_BACKWARD_SPEED_MPS, speed, MAX_FORWARD_SPEED_MPS);
 	steering = clamp(MAX_LEFT_STEERING_DEGS, steering, MAX_RIGHT_STEERING_DEGS);
@@ -220,7 +224,7 @@ void Kyle::update(double dt) {
 	if (wheelroll > 10*3.1415926535) wheelroll = 0;
 	if (wheelroll < -10*3.1415926535) wheelroll = 0;
 	
-	std::cout << wheelroll << std::endl;
+	//std::cout << wheelroll << std::endl;
 	wheelroll += speed * dt;
 
 
@@ -235,6 +239,7 @@ void Kyle::update(double dt) {
 void Kyle::draw() {
 	
 	glPushMatrix();
+	//glScaled(0.5, 0.5,0.5);
 	positionInGL();
 	glRotated(steering, 1, 0, 0);
 	int i = 0;

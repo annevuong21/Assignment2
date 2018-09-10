@@ -7,7 +7,8 @@ public:
 	Kyle();
 	void draw();
 	void update(double dt);
-
+	VehicleModel GetVehicleModel();
+	VehicleState GetVehicleState();
 protected:
 	VehicleModel vm;
 	VehicleState vs;
