@@ -333,7 +333,7 @@ double* Car::chase(Car* objcar)
 	{
 		steer = steerangle;
 	}
-	if (distance <= safedistance && abs(steering) < 5)
+	if (distance <= safedistance ) // Control distance when chasing 
 	{
 		double difference = (distance - safedistance) / safedistance;
 		if (abs(difference) < 0.1) difference = 0;

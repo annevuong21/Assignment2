@@ -167,9 +167,9 @@ void drawGoals()
 
 void test()
 {
-	Rectangular rect(10, 1, 10);
-	rect.setPosition(10, 0, 10);
-	rect.draw();
+	//Rectangular rect(10, 1, 10);
+	//rect.setPosition(10, 0, 10);
+	//rect.draw();
 }
 	
 
@@ -281,10 +281,10 @@ void idle() {
 			speed = static_cast<double>(Decelerate) * Vehicle::MAX_BACKWARD_SPEED_MPS / 255.0;
 		}
 
-		if (control.LeftThumbLocation().GetX() != 0 && control.LeftThumbLocation().GetY() != 0)
+		if (control.RightThumbLocation().GetX() != 0 && control.RightThumbLocation().GetY() != 0)
 		{
-			double x = static_cast<double>(control.LeftThumbLocation().GetX());
-			double y = static_cast<double>(control.LeftThumbLocation().GetY());
+			double x = static_cast<double>(control.RightThumbLocation().GetX());
+			double y = static_cast<double>(control.RightThumbLocation().GetY());
 			double degree = atan2(y , x);
 			// Restrist Steer input angle to half circle
 			if (-3.1415926535 / 2 <= degree && degree < 0) { degree = 0; }
@@ -292,44 +292,55 @@ void idle() {
 			steering = cos(degree) * Vehicle::MAX_LEFT_STEERING_DEGS;
 		}
 
-		if (control.PressedUpDpad())
+		if (control.PressedStart())
+		{
+			Car* objectcar = dynamic_cast<Car*>(otherVehicles[1]);
+			Car* mycar = dynamic_cast<Car*>(vehicle);
+			double* SpeedandSteering = new double[2];
+			SpeedandSteering = mycar->chase(objectcar);
+			speed = SpeedandSteering[0];
+			steering = SpeedandSteering[1];
+			delete[]SpeedandSteering;
+		}
+
+		if (control.PressedY())
 		{
 			Camera::get()->moveForward();
 		}
 
-		if (control.PressedDownDpad())
+		if (control.PressedA())
 		{
 			Camera::get()->moveBackward();
 		}
 
-		if (control.PressedRightDpad())
+		if (control.PressedB())
 		{
 			Camera::get()->strafeRight();
 		}
 
-		if (control.PressedLeftDpad())
+		if (control.PressedX())
 		{
 			Camera::get()->strafeLeft();
 		}
 
-		if (control.PressedX())
+		if (control.PressedRightShoulder())
 		{
 			Camera::get()->strafeUp();
 		}
 
-		if (control.PressedA())
+		if (control.PressedLeftShoulder())
 		{
 			Camera::get()->strafeDown();
 		}
 		
-		if (control.RightThumbLocation().GetX() != 0 && control.RightThumbLocation().GetY() != 0)
+		if (control.LeftThumbLocation().GetX() != 0 && control.LeftThumbLocation().GetY() != 0)
 		{
-			int dx = static_cast<int>(control.RightThumbLocation().GetX() / (3276.7 / 2));
-			int dy = static_cast<int>(control.RightThumbLocation().GetY() / (3276.7 / 2));
+			int dx = static_cast<int>(control.LeftThumbLocation().GetX() / (3276.7 / 2));
+			int dy = static_cast<int>(control.LeftThumbLocation().GetY() / (3276.7 / 2));
 			Camera::get()->mouseRotateCamera(dx, -dy);
 		}
 	}
-	//else
+	else
 	{
 		if (KeyManager::get()->isAsciiKeyPressed('a')) {
 			Camera::get()->strafeLeft();
@@ -355,17 +366,6 @@ void idle() {
 			Camera::get()->strafeUp();
 		}
 
-		if (KeyManager::get()->isAsciiKeyPressed('l')) 
-		{
-			Car* objectcar = dynamic_cast<Car*>(otherVehicles[1]);
-			Car* mycar = dynamic_cast<Car*>(vehicle);
-			double* SpeedandSteering = new double[2];
-			SpeedandSteering = mycar->chase(objectcar);
-			speed = SpeedandSteering[0];
-			steering = SpeedandSteering[1];
-			delete[]SpeedandSteering;
-		}
-
 		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
 			steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
 		}
@@ -380,6 +380,17 @@ void idle() {
 
 		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
 			speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
+		}
+
+		if (KeyManager::get()->isAsciiKeyPressed('l'))
+		{
+			Car* objectcar = dynamic_cast<Car*>(otherVehicles[1]);
+			Car* mycar = dynamic_cast<Car*>(vehicle);
+			double* SpeedandSteering = new double[2];
+			SpeedandSteering = mycar->chase(objectcar);
+			speed = SpeedandSteering[0];
+			steering = SpeedandSteering[1];
+			delete[]SpeedandSteering;
 		}
 	}
 
