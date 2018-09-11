@@ -18,6 +18,8 @@ public:
 
 	void update(double dt);
 
+	double* chase(Car* objcar);
+
 	void draw();
 
 protected:
@@ -27,5 +29,4 @@ protected:
 	std::vector<int> steerwheelposition;
 	double wheelroll;
 	void Initialization();
-
 };
