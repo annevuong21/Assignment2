@@ -340,7 +340,7 @@ void idle() {
 			Camera::get()->mouseRotateCamera(dx, -dy);
 		}
 	}
-	else
+	//else
 	{
 		if (KeyManager::get()->isAsciiKeyPressed('a')) {
 			Camera::get()->strafeLeft();
@@ -365,7 +365,26 @@ void idle() {
 		if (KeyManager::get()->isAsciiKeyPressed(' ')) {
 			Camera::get()->strafeUp();
 		}
-
+		////
+		if (KeyManager::get()->isAsciiKeyPressed('t')) {
+			vehicle->setX(vehicle->getX() + 10);
+		}
+		if (KeyManager::get()->isAsciiKeyPressed('g')) {
+			vehicle->setX(vehicle->getX() - 10);
+		}
+		if (KeyManager::get()->isAsciiKeyPressed('f')) {
+			vehicle->setZ(vehicle->getZ() - 10);
+		}
+		if (KeyManager::get()->isAsciiKeyPressed('h')) {
+			vehicle->setZ(vehicle->getZ() + 10);
+		}
+		if (KeyManager::get()->isAsciiKeyPressed('r')) {
+			vehicle->setRotation(vehicle->getRotation() + 15);
+		}
+		if (KeyManager::get()->isAsciiKeyPressed('y')) {
+			vehicle->setRotation(vehicle->getRotation() - 15);
+		}
+		////
 		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
 			steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
 		}
@@ -382,12 +401,10 @@ void idle() {
 			speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 		}
 
-		if (KeyManager::get()->isAsciiKeyPressed('l'))
+		if (vehicle->getchasesignal())
 		{
-			Car* objectcar = dynamic_cast<Car*>(otherVehicles[1]);
-			Car* mycar = dynamic_cast<Car*>(vehicle);
 			double* SpeedandSteering = new double[2];
-			SpeedandSteering = mycar->chase(objectcar);
+			SpeedandSteering = vehicle->chase(otherVehicles[1]);
 			speed = SpeedandSteering[0];
 			steering = SpeedandSteering[1];
 			delete[]SpeedandSteering;
@@ -562,6 +579,9 @@ void keydown(unsigned char key, int x, int y) {
 		break;
 	case 'p':
 		Camera::get()->togglePursuitMode();
+		break;
+	case 'l':
+		vehicle->chaseswitch();
 		break;
 	}
 

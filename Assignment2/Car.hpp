@@ -18,7 +18,6 @@ public:
 
 	void update(double dt);
 
-	double* chase(Car* objcar);
 
 	void draw();
 

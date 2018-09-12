@@ -29,11 +29,17 @@ public:
 	double getSteering() const { return steering; }
 	
 	void addShape(Shape * shape);
+
+	double* chase(Vehicle* objcar);
+	void chaseswitch();
+	bool getchasesignal();
+
 protected:
 	double speed;     // m/s
 	double steering;  // degrees
 	double wheelroll;
 	std::vector<Shape *> shapes;
+	bool ChaseorNot = false;
 };
 
 double clamp(double a, double n, double b);
