@@ -267,8 +267,7 @@ void idle() {
 	steering = 0;
 	if (control.IsConnected())
 	{
-		control.SetDeadzone(5000);
-
+		control.SetDeadzone(10000);
 		if (control.RightTriggerLocation() > 0)
 		{
 			BYTE Accelerate = control.RightTriggerLocation();
@@ -290,17 +289,6 @@ void idle() {
 			if (-3.1415926535 / 2 <= degree && degree < 0) { degree = 0; }
 			if (-3.1415926535 < degree && degree < -3.1415926535 / 2) { degree = 3.1415926535; }
 			steering = cos(degree) * Vehicle::MAX_LEFT_STEERING_DEGS;
-		}
-
-		if (control.PressedStart())
-		{
-			Car* objectcar = dynamic_cast<Car*>(otherVehicles[1]);
-			Car* mycar = dynamic_cast<Car*>(vehicle);
-			double* SpeedandSteering = new double[2];
-			SpeedandSteering = mycar->chase(objectcar);
-			speed = SpeedandSteering[0];
-			steering = SpeedandSteering[1];
-			delete[]SpeedandSteering;
 		}
 
 		if (control.PressedY())
@@ -340,7 +328,7 @@ void idle() {
 			Camera::get()->mouseRotateCamera(dx, -dy);
 		}
 	}
-	//else
+	else
 	{
 		if (KeyManager::get()->isAsciiKeyPressed('a')) {
 			Camera::get()->strafeLeft();
@@ -365,26 +353,7 @@ void idle() {
 		if (KeyManager::get()->isAsciiKeyPressed(' ')) {
 			Camera::get()->strafeUp();
 		}
-		////
-		if (KeyManager::get()->isAsciiKeyPressed('t')) {
-			vehicle->setX(vehicle->getX() + 10);
-		}
-		if (KeyManager::get()->isAsciiKeyPressed('g')) {
-			vehicle->setX(vehicle->getX() - 10);
-		}
-		if (KeyManager::get()->isAsciiKeyPressed('f')) {
-			vehicle->setZ(vehicle->getZ() - 10);
-		}
-		if (KeyManager::get()->isAsciiKeyPressed('h')) {
-			vehicle->setZ(vehicle->getZ() + 10);
-		}
-		if (KeyManager::get()->isAsciiKeyPressed('r')) {
-			vehicle->setRotation(vehicle->getRotation() + 15);
-		}
-		if (KeyManager::get()->isAsciiKeyPressed('y')) {
-			vehicle->setRotation(vehicle->getRotation() - 15);
-		}
-		////
+
 		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_LEFT)) {
 			steering = Vehicle::MAX_LEFT_STEERING_DEGS * -1;
 		}
@@ -400,16 +369,17 @@ void idle() {
 		if (KeyManager::get()->isSpecialKeyPressed(GLUT_KEY_DOWN)) {
 			speed = Vehicle::MAX_BACKWARD_SPEED_MPS;
 		}
-
-		if (vehicle->getchasesignal())
-		{
-			double* SpeedandSteering = new double[2];
-			SpeedandSteering = vehicle->chase(otherVehicles[1]);
-			speed = SpeedandSteering[0];
-			steering = SpeedandSteering[1];
-			delete[]SpeedandSteering;
-		}
 	}
+
+	if (vehicle->getchasesignal())
+	{
+		double* SpeedandSteering = new double[2];
+		SpeedandSteering = vehicle->chase(otherVehicles[1]);
+		speed = SpeedandSteering[0];
+		steering = SpeedandSteering[1];
+		delete[]SpeedandSteering;
+	}
+
 
 	// attempt to do data communications every 4 frames if we've created a local vehicle
 	if(frameCounter % 4 == 0 && vehicle != NULL) {
